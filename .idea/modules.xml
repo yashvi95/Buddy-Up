@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BuddyUp.iml" filepath="$PROJECT_DIR$/.idea/modules/BuddyUp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BuddyUp.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BuddyUp.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/LogInPage_main.iml" filepath="$PROJECT_DIR$/.idea/modules/LogInPage_main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/LogInPage_main.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/LogInPage_main.app.iml" />
     </modules>
   </component>
 </project>
