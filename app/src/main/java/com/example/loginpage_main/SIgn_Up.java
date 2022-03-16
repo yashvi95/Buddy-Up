@@ -30,6 +30,7 @@ public class SIgn_Up extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -126,6 +127,7 @@ public class SIgn_Up extends AppCompatActivity implements View.OnClickListener {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(SIgn_Up.this, "User has been Signed Up", Toast.LENGTH_LONG).show();
+                                        startActivity(new Intent (SIgn_Up.this, MainActivity.class));
                                     } else {
                                         Toast.makeText(SIgn_Up.this, "Failed to Sign Up", Toast.LENGTH_LONG).show();
                                     }
