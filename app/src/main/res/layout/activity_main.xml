@@ -25,6 +25,7 @@
         android:textSize="35dp"
         android:textStyle="bold" />
 
+
     <EditText
         android:id="@+id/username_text"
         android:layout_width="match_parent"
