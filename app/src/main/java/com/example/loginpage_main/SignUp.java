@@ -14,12 +14,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class SIgn_Up extends AppCompatActivity implements View.OnClickListener {
+public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth mAuth;
 
@@ -126,15 +125,15 @@ public class SIgn_Up extends AppCompatActivity implements View.OnClickListener {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(SIgn_Up.this, "User has been Signed Up", Toast.LENGTH_LONG).show();
-                                        startActivity(new Intent (SIgn_Up.this, MainActivity.class));
+                                        Toast.makeText(SignUp.this, "User has been Signed Up", Toast.LENGTH_LONG).show();
+                                        startActivity(new Intent (SignUp.this, LoginPage.class));
                                     } else {
-                                        Toast.makeText(SIgn_Up.this, "Failed to Sign Up", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(SignUp.this, "Failed to Sign Up", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
                         } else {
-                            Toast.makeText(SIgn_Up.this, "Failed to Sign Up", Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignUp.this, "Failed to Sign Up", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
