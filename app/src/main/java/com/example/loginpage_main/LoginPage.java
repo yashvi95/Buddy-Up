@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,14 +17,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginPage extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login_page);
 
         TextView username = (TextView) findViewById(R.id.username_text);
         TextView password = (TextView) findViewById(R.id.password_text);
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 else
                 {
-                    Toast.makeText(MainActivity.this,"Failed to Log In! Please check your credentials", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginPage.this,"Failed to Log In! Please check your credentials", Toast.LENGTH_SHORT).show();
                 }
             }
             private void userLogin()
@@ -84,11 +83,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
-                            startActivity(new Intent(MainActivity.this,afterLogin_test.class));
+                            startActivity(new Intent(LoginPage.this, BaseAfterLoginForFragments.class));
+
+                            //startActivity(new Intent(MainActivity.this,afterLogin_test.class));
                             //redirect to profile
                         }
                         else{
-                            Toast.makeText(MainActivity.this, "Failed to Log In! Please check your credentials", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginPage.this, "Failed to Log In! Please check your credentials", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         forgotpasstxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"GOING TO FORGOT PASSWORD PAGE", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginPage.this,"GOING TO FORGOT PASSWORD PAGE", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.SignUp_Button:
-                startActivity(new Intent(this, SIgn_Up.class ));
+                startActivity(new Intent(this, SignUp.class ));
                 break;
         }
     }

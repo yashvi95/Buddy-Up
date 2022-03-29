@@ -3,21 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
-    app:startDestination="@id/firstFragment">
+    app:startDestination="@id/firstFragment_Home">
 
     <fragment
-        android:id="@+id/firstFragment"
-        android:name="com.example.loginpage_main.FirstFragment"
+        android:id="@+id/firstFragment_Home"
+        android:name="com.example.loginpage_main.FragmentFirst"
         android:label="fragment_first"
         tools:layout="@layout/fragment_first" />
     <fragment
-        android:id="@+id/secondFragment"
-        android:name="com.example.loginpage_main.SecondFragment"
+        android:id="@+id/secondFragment_Messages"
+        android:name="com.example.loginpage_main.FragmentSecond"
         android:label="fragment_second"
         tools:layout="@layout/fragment_second" />
     <fragment
-        android:id="@+id/thirdFragment"
-        android:name="com.example.loginpage_main.ThirdFragment"
+        android:id="@+id/thirdFragment_Profile"
+        android:name="com.example.loginpage_main.FragmentThird"
         android:label="fragment_third"
         tools:layout="@layout/fragment_third" />
 </navigation>
