@@ -1,201 +1,754 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    tools:context=".SignUp">
+    android:background="@drawable/background">
 
-    <EditText
-        android:id="@+id/gym"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/phonenumber"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="10dp"
-        android:background="#70ffffff"
-        android:drawableLeft="@drawable/ic_baseline_location_on_24"
-        android:drawablePadding="10dp"
-        android:hint="Gym Location"
-        android:padding="20dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        android:layout_height="match_parent"
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/phonenumber"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="128dp"
-        android:background="#70ffffff"
-        android:drawableLeft="@drawable/ic_baseline_alternate_email_24"
-        android:drawablePadding="10dp"
-        android:hint="Email"
-        android:padding="20dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:context=".SignUp"
+        tools:ignore="ExtraText">
 
-    <TextView
-        android:id="@+id/Signup"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="9dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:gravity="center"
-        android:text="Sign Up"
-        android:textColor="@color/black"
-        android:textSize="35dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/gym"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="10dp"
+            android:background="#70ffffff"
+            android:drawableStart="@drawable/ic_baseline_location_on_24"
+            android:drawablePadding="10dp"
+            android:hint="Gym Location"
+            android:padding="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email" />
 
-    <EditText
-        android:id="@+id/firstname"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/Signup"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="155dp"
-        android:layout_marginEnd="9dp"
-        android:background="#70ffffff"
-        android:drawableLeft="@drawable/ic_baseline_info_24"
-        android:drawablePadding="10dp"
-        android:hint="First Name"
-        android:padding="20dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/Signup"
-        />
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="128dp"
+            android:background="#70ffffff"
+            android:drawableStart="@drawable/ic_baseline_alternate_email_24"
+            android:drawablePadding="10dp"
+            android:hint="Email"
+            android:padding="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/lastname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/firstname"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="72dp"
-        android:background="#70ffffff"
-        android:drawableLeft="@drawable/ic_baseline_info_24"
-        android:drawablePadding="10dp"
-        android:hint="Last Name"
-        android:padding="20dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/firstusername"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/Signup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="9dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:gravity="center"
+            android:text="Sign Up"
+            android:textColor="@color/black"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/firstusername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lastname"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="#70ffffff"
-        android:drawableLeft="@drawable/ic_baseline_person_outline_24"
-        android:drawablePadding="10dp"
-        android:hint="Username"
-        android:padding="20dp"
-        android:textColor="@color/black"
+        <EditText
+            android:id="@+id/firstname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Signup"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="155dp"
+            android:layout_marginEnd="9dp"
+            android:background="#70ffffff"
+            android:drawableLeft="@drawable/ic_baseline_info_24"
+            android:drawablePadding="10dp"
+            android:hint="First Name"
+            android:padding="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/Signup"
+            />
 
-        android:textColorHint="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstname"
-        app:layout_constraintVertical_bias="0.227" />
+        <EditText
+            android:id="@+id/lastname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/firstname"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="72dp"
+            android:background="#70ffffff"
+            android:drawableLeft="@drawable/ic_baseline_info_24"
+            android:drawablePadding="10dp"
+            android:hint="Last Name"
+            android:padding="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/firstusername"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/pswd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/firstusername"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="9dp"
-        android:background="#70ffffff"
-        android:drawableLeft="@drawable/ic_baseline_lock_24"
-        android:drawablePadding="9dp"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:padding="20dp"
+        <EditText
+            android:id="@+id/firstusername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lastname"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="#70ffffff"
+            android:drawableLeft="@drawable/ic_baseline_person_outline_24"
+            android:drawablePadding="10dp"
+            android:hint="Username"
+            android:padding="20dp"
+            android:textColor="@color/black"
+
+            android:textColorHint="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/firstname"
+            app:layout_constraintVertical_bias="0.227" />
+
+        <EditText
+            android:id="@+id/pswd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/firstusername"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="9dp"
+            android:background="#70ffffff"
+            android:drawableLeft="@drawable/ic_baseline_lock_24"
+            android:drawablePadding="9dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="20dp"
 
 
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstusername" />
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/firstusername" />
 
-    <EditText
-        android:id="@+id/phonenumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/pswd"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="10dp"
-        android:background="#70ffffff"
-        android:drawableLeft="@drawable/ic_baseline_local_phone_24"
-        android:drawablePadding="10dp"
-        android:hint="Phone Number"
-        android:padding="20dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pswd" />
+        <EditText
+            android:id="@+id/phonenumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pswd"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="472dp"
+            android:layout_marginEnd="10dp"
+            android:background="#70ffffff"
+            android:drawableLeft="@drawable/ic_baseline_local_phone_24"
+            android:drawablePadding="10dp"
+            android:hint="Phone Number"
+            android:padding="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pswd" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="28dp"
+            android:backgroundTint='@color/design_default_color_background'
+            android:text="Sign Up"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
+<!--
+        <ImageView
+            android:id=“@+id/cover”
+            android:layout_width=""
+            android:layout_height=""
+            />
+        <ImageView
+            android:id=“@+id/cover”
+            android:layout_width=“190dp”
+            android:layout_height=“134dp”
+            android:layout_marginTop=“120dp”
+            android:background=“@color/white”
+            app:layout_constraintEnd_toEndOf=“parent”
+            app:layout_constraintHorizontal_bias=“0.497”
+            app:layout_constraintStart_toStartOf=“parent”
+        app:layout_constraintTop_toTopOf=“parent”
+        app:srcCompat=“@drawable/ic_baseline_person_24"
+        tools:ignore=“MissingConstraints”>
+        </ImageView>
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="28dp"
-        android:backgroundTint='@color/design_default_color_background'
-        android:text="Sign Up"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:id=“@+id/photoselect”
+    android:layout_width=“172dp”
+    android:layout_height=“49dp”
+    android:layout_alignParentBottom=“true”
+    android:layout_marginTop=“264dp”
+    android:backgroundTint=‘@color/design_default_color_background’
+    android:text=“SELECT”
+    android:textColor=“@color/black”
+    android:textSize=“15dp”
+    app:layout_constraintEnd_toEndOf=“parent”
+    app:layout_constraintHorizontal_bias=“0.497”
+    app:layout_constraintStart_toStartOf=“parent”
+    app:layout_constraintTop_toTopOf=“parent”
+    tools:ignore=“MissingConstraints”>
+</com.google.android.material.button.MaterialButton>
+<TextView
+android:layout_width=“wrap_content”
+    android:layout_height=“wrap_content”
+    android:layout_marginTop=“52dp”
+    android:padding=“20dp”
+    android:text=“Upload a Picture”
+    android:textColor=“@color/black”
+    android:textSize=“20dp”
+    android:textStyle=“bold”
+    app:layout_constraintEnd_toEndOf=“parent”
+    app:layout_constraintHorizontal_bias=“0.497"
+    app:layout_constraintStart_toStartOf=“parent”
+    app:layout_constraintTop_toTopOf=“parent” />
+<RelativeLayout
+android:id=“@+id/cardio”
+    android:layout_width=“111dp”
+    android:layout_height=“94dp”
+    android:layout_marginTop=“384dp”
+    android:background=“@drawable/cardio”
+    app:layout_constraintEnd_toEndOf=“parent”
+    app:layout_constraintStart_toStartOf=“parent”
+    app:layout_constraintTop_toTopOf=“parent”>
+<com.google.android.material.button.MaterialButton
+android:id=“@+id/select”
+    android:layout_width=“wrap_content”
+    android:layout_height=“28dp”
+    android:layout_alignParentBottom=“true”
+    android:layout_marginLeft=“5dp”
+    android:layout_marginBottom=“1dp”
+    android:backgroundTint=‘@color/design_default_color_background’
+    android:text=“SELECT”
+    android:textColor=“@color/black”
+    android:textSize=“7dp”>
+    </com.google.android.material.button.MaterialButton>
+<TextView
+android:id=“@+id/textView2"
+    android:layout_width=“wrap_content”
+    android:layout_height=“wrap_content”
+    android:padding=“10dp”
+    android:text=“Cardio”
+    android:textAllCaps=“true”
+    android:textColor=“@color/black”
+    android:textSize=“10dp”
+    android:textStyle=“bold” />
+    </RelativeLayout>
+<RelativeLayout
+android:id=“@+id/strength”
+    android:layout_width=“107dp”
+    android:layout_height=“96dp”
+    android:layout_marginTop=“384dp”
+    android:background=“@drawable/strength”
+    app:layout_constraintEnd_toEndOf=“parent”
+    app:layout_constraintHorizontal_bias=“0.065”
+    app:layout_constraintStart_toStartOf=“parent”
+    app:layout_constraintTop_toTopOf=“parent”>
+<com.google.android.material.button.MaterialButton
+android:id=“@+id/select1"
+    android:layout_width=“wrap_content”
+    android:layout_height=“29dp”
+    android:layout_alignParentBottom=“true”
+    android:layout_marginLeft=“5dp”
+    android:layout_marginBottom=“1dp”
+    android:backgroundTint=‘@color/design_default_color_background’
+    android:text=“SELECT”
+    android:textColor=“@color/black”
+    android:textSize=“7dp”>
+    </com.google.android.material.button.MaterialButton>
+<TextView
+android:id=“@+id/textView”
+    android:layout_width=“wrap_content”
+    android:layout_height=“wrap_content”
+    android:padding=“10dp”
+    android:text=“Strength Training”
+    android:textAllCaps=“true”
+    android:textColor=“@color/black”
+    android:textSize=“10dp”
+    android:textStyle=“bold” />
+    </RelativeLayout>
+<TextView
+android:layout_width=“wrap_content”
+    android:layout_height=“wrap_content”
+    android:layout_marginTop=“324dp”
+    android:padding=“10dp”
+    android:text=“Select a Category”
+    android:textColor=“@color/black”
+    android:textSize=“20dp”
+    android:textStyle=“bold”
+    app:layout_constraintEnd_toEndOf=“parent”
+    app:layout_constraintHorizontal_bias=“0.547”
+    app:layout_constraintStart_toStartOf=“parent”
+    app:layout_constraintTop_toTopOf=“parent” />
+<com.google.android.material.button.MaterialButton
+android:id=“@+id/signup”
+    android:layout_width=“136dp”
+    android:layout_height=“40dp”
+    android:layout_alignParentBottom=“true”
+    android:layout_marginTop=“624dp”
+    android:backgroundTint=‘@color/design_default_color_background’
+    android:text=“BUDDY UP”
+    android:textColor=“@color/black”
+    android:textSize=“15dp”
+    app:layout_constraintEnd_toEndOf=“parent”
+    app:layout_constraintHorizontal_bias=“0.487”
+    app:layout_constraintStart_toStartOf=“parent”
+    app:layout_constraintTop_toTopOf=“parent”
+    tools:ignore=“MissingConstraints”>
+    </com.google.android.material.button.MaterialButton>
+<RelativeLayout
+android:id=“@+id/outside”
+    android:layout_width=“107dp”
+    android:layout_height=“98dp”
+    android:layout_marginTop=“508dp”
+    android:background=“@drawable/outside”
+    app:layout_constraintEnd_toEndOf=“parent”
+    app:layout_constraintHorizontal_bias=“0.937”
+    app:layout_constraintStart_toStartOf=“parent”
+    app:layout_constraintTop_toTopOf=“parent”>
+<com.google.android.material.button.MaterialButton
+android:id=“@+id/select5"
+    android:layout_width=“wrap_content”
+    android:layout_height=“30dp”
+    android:layout_alignParentBottom=“true”
+    android:layout_marginLeft=“5dp”
+    android:layout_marginBottom=“1dp”
+    android:backgroundTint=‘@color/design_default_color_background’
+    android:text=“SELECT”
+    android:textColor=“@color/black”
+    android:textSize=“7dp”>
+    </com.google.android.material.button.MaterialButton>
+<TextView
+android:id=“@+id/textView4”
+    android:layout_width=“wrap_content”
+    android:layout_height=“wrap_content”
+    android:padding=“10dp”
+    android:text=“Group Classes”
+    android:textAllCaps=“true”
+    android:textColor=“@color/black”
+    android:textSize=“10dp”
+    android:textStyle=“bold” />
+    </RelativeLayout>
+<RelativeLayout
+android:id=“@+id/bodybuilding”
+    android:layout_width=“108dp”
+    android:layout_height=“97dp”
+    android:layout_marginTop=“508dp”
+    android:background=“@drawable/bodybuilding”
+    app:layout_constraintEnd_toEndOf=“parent”
+    app:layout_constraintHorizontal_bias=“0.056"
+    app:layout_constraintStart_toStartOf=“parent”
+    app:layout_constraintTop_toTopOf=“parent”>
+<com.google.android.material.button.MaterialButton
+android:id=“@+id/select3”
+    android:layout_width=“wrap_content”
+    android:layout_height=“32dp”
+    android:layout_alignParentBottom=“true”
+    android:layout_marginLeft=“5dp”
+    android:layout_marginBottom=“1dp”
+    android:backgroundTint=‘@color/design_default_color_background’
+    android:text=“SELECT”
+    android:textColor=“@color/black”
+    android:textSize=“7dp”>
+    </com.google.android.material.button.MaterialButton>
+<TextView
+android:layout_width=“wrap_content”
+    android:layout_height=“wrap_content”
+    android:padding=“10dp”
+    android:text=“Body Building”
+    android:textAllCaps=“true”
+    android:textColor=“@color/black”
+    android:textSize=“10dp”
+    android:textStyle=“bold” />
+    </RelativeLayout>
+<RelativeLayout
+android:id=“@+id/weightloss”
+    android:layout_width=“112dp”
+    android:layout_height=“99dp”
+    android:layout_marginTop=“508dp”
+    android:background=“@drawable/weightloss”
+    app:layout_constraintEnd_toEndOf=“parent”
+    app:layout_constraintHorizontal_bias=“0.498"
+    app:layout_constraintStart_toStartOf=“parent”
+    app:layout_constraintTop_toTopOf=“parent”>
+<com.google.android.material.button.MaterialButton
+android:id=“@+id/select4”
+    android:layout_width=“wrap_content”
+    android:layout_height=“29dp”
+    android:layout_alignParentBottom=“true”
+    android:layout_marginLeft=“5dp”
+    android:layout_marginBottom=“1dp”
+    android:backgroundTint=‘@color/design_default_color_background’
+    android:text=“SELECT”
+    android:textColor=“@color/black”
+    android:textSize=“7dp”>
+    </com.google.android.material.button.MaterialButton>
+<TextView
+android:id=“@+id/textView5"
+    android:layout_width=“wrap_content”
+    android:layout_height=“wrap_content”
+    android:padding=“10dp”
+    android:text=“Weight Loss”
+    android:textAllCaps=“true”
+    android:textColor=“@color/black”
+    android:textSize=“10dp”
+    android:textStyle=“bold” />
+    </RelativeLayout>
+<RelativeLayout
+android:id=“@+id/yoga”
+    android:layout_width=“111dp”
+    android:layout_height=“94dp”
+    android:layout_marginTop=“384dp”
+    android:background=“@drawable/yoga”
+    app:layout_constraintEnd_toEndOf=“parent”
+    app:layout_constraintHorizontal_bias=“0.946”
+    app:layout_constraintStart_toStartOf=“parent”
+    app:layout_constraintTop_toTopOf=“parent”>
+<com.google.android.material.button.MaterialButton
+android:id=“@+id/select2"
+    android:layout_width=“wrap_content”
+    android:layout_height=“30dp”
+    android:layout_alignParentBottom=“true”
+    android:layout_marginLeft=“5dp”
+    android:layout_marginBottom=“1dp”
+    android:backgroundTint=‘@color/design_default_color_background’
+    android:text=“SELECT”
+    android:textColor=“@color/black”
+    android:textSize=“7dp”>
+    </com.google.android.material.button.MaterialButton>
+<TextView
+android:id=“@+id/textView3”
+    android:layout_width=“wrap_content”
+    android:layout_height=“wrap_content”
+    android:padding=“10dp”
+    android:text=“Yoga”
+    android:textAllCaps=“true”
+    android:textColor=“@color/black”
+    android:textSize=“10dp”
+    android:textStyle=“bold” />
+    </RelativeLayout>
+    12:48
+    <?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=“http://schemas.android.com/apk/res/android”
+    xmlns:app=“http://schemas.android.com/apk/res-auto”
+    xmlns:tools=“http://schemas.android.com/tools”
+    android:layout_width=“match_parent”
+    android:layout_height=“match_parent”
+    android:background=“@drawable/background”
+    tools:context=“.SignUp2”>
+<ImageView
+android:id=“@+id/cover”
+    android:layout_width=“190dp”
+    android:layout_height=“134dp”
+    android:layout_marginTop=“120dp”
+    android:background=“@color/white”
+    app:layout_constraintEnd_toEndOf=“parent”
+    app:layout_constraintHorizontal_bias=“0.497"
+    app:layout_constraintStart_toStartOf=“parent”
+    app:layout_constraintTop_toTopOf=“parent”
+    app:srcCompat=“@drawable/ic_baseline_person_24”
+    tools:ignore=“MissingConstraints”>
+    </ImageView>
+<com.google.android.material.button.MaterialButton
+android:id=“@+id/photoselect”
+    android:layout_width=“172dp”
+    android:layout_height=“49dp”
+    android:layout_alignParentBottom=“true”
+    android:layout_marginTop=“264dp”
+    android:backgroundTint=‘@color/design_default_color_background’
+    android:text=“SELECT”
+    android:textColor=“@color/black”
+    android:textSize=“15dp”
+    app:layout_constraintEnd_toEndOf=“parent”
+    app:layout_constraintHorizontal_bias=“0.497"
+    app:layout_constraintStart_toStartOf=“parent”
+    app:layout_constraintTop_toTopOf=“parent”
+    tools:ignore=“MissingConstraints”>
+    </com.google.android.material.button.MaterialButton>
+<TextView
+android:layout_width=“wrap_content”
+    android:layout_height=“wrap_content”
+    android:layout_marginTop=“52dp”
+    android:padding=“20dp”
+    android:text=“Upload a Picture”
+    android:textColor=“@color/black”
+    android:textSize=“20dp”
+    android:textStyle=“bold”
+    app:layout_constraintEnd_toEndOf=“parent”
+    app:layout_constraintHorizontal_bias=“0.497”
+    app:layout_constraintStart_toStartOf=“parent”
+    app:layout_constraintTop_toTopOf=“parent” />
+<RelativeLayout
+android:id=“@+id/cardio”
+    android:layout_width=“111dp”
+    android:layout_height=“94dp”
+    android:layout_marginTop=“384dp”
+    android:background=“@drawable/cardio”
+    app:layout_constraintEnd_toEndOf=“parent”
+    app:layout_constraintStart_toStartOf=“parent”
+    app:layout_constraintTop_toTopOf=“parent”>
+<com.google.android.material.button.MaterialButton
+android:id=“@+id/select”
+    android:layout_width=“wrap_content”
+    android:layout_height=“28dp”
+    android:layout_alignParentBottom=“true”
+    android:layout_marginLeft=“5dp”
+    android:layout_marginBottom=“1dp”
+    android:backgroundTint=‘@color/design_default_color_background’
+    android:text=“SELECT”
+    android:textColor=“@color/black”
+    android:textSize=“7dp”>
+    </com.google.android.material.button.MaterialButton>
+<TextView
+android:id=“@+id/textView2”
+    android:layout_width=“wrap_content”
+    android:layout_height=“wrap_content”
+    android:padding=“10dp”
+    android:text=“Cardio”
+    android:textAllCaps=“true”
+    android:textColor=“@color/black”
+    android:textSize=“10dp”
+    android:textStyle=“bold” />
+    </RelativeLayout>
+<RelativeLayout
+android:id=“@+id/strength”
+    android:layout_width=“107dp”
+    android:layout_height=“96dp”
+    android:layout_marginTop=“384dp”
+    android:background=“@drawable/strength”
+    app:layout_constraintEnd_toEndOf=“parent”
+    app:layout_constraintHorizontal_bias=“0.065"
+    app:layout_constraintStart_toStartOf=“parent”
+    app:layout_constraintTop_toTopOf=“parent”>
+<com.google.android.material.button.MaterialButton
+android:id=“@+id/select1”
+    android:layout_width=“wrap_content”
+    android:layout_height=“29dp”
+    android:layout_alignParentBottom=“true”
+    android:layout_marginLeft=“5dp”
+    android:layout_marginBottom=“1dp”
+    android:backgroundTint=‘@color/design_default_color_background’
+    android:text=“SELECT”
+    android:textColor=“@color/black”
+    android:textSize=“7dp”>
+    </com.google.android.material.button.MaterialButton>
+<TextView
+android:id=“@+id/textView”
+    android:layout_width=“wrap_content”
+    android:layout_height=“wrap_content”
+    android:padding=“10dp”
+    android:text=“Strength Training”
+    android:textAllCaps=“true”
+    android:textColor=“@color/black”
+    android:textSize=“10dp”
+    android:textStyle=“bold” />
+    </RelativeLayout>
+<TextView
+android:layout_width=“wrap_content”
+    android:layout_height=“wrap_content”
+    android:layout_marginTop=“324dp”
+    android:padding=“10dp”
+    android:text=“Select a Category”
+    android:textColor=“@color/black”
+    android:textSize=“20dp”
+    android:textStyle=“bold”
+    app:layout_constraintEnd_toEndOf=“parent”
+    app:layout_constraintHorizontal_bias=“0.547"
+    app:layout_constraintStart_toStartOf=“parent”
+    app:layout_constraintTop_toTopOf=“parent” />
+<com.google.android.material.button.MaterialButton
+android:id=“@+id/signup”
+    android:layout_width=“136dp”
+    android:layout_height=“40dp”
+    android:layout_alignParentBottom=“true”
+    android:layout_marginTop=“624dp”
+    android:backgroundTint=‘@color/design_default_color_background’
+    android:text=“BUDDY UP”
+    android:textColor=“@color/black”
+    android:textSize=“15dp”
+    app:layout_constraintEnd_toEndOf=“parent”
+    app:layout_constraintHorizontal_bias=“0.487"
+    app:layout_constraintStart_toStartOf=“parent”
+    app:layout_constraintTop_toTopOf=“parent”
+    tools:ignore=“MissingConstraints”>
+    </com.google.android.material.button.MaterialButton>
+<RelativeLayout
+android:id=“@+id/outside”
+    android:layout_width=“107dp”
+    android:layout_height=“98dp”
+    android:layout_marginTop=“508dp”
+    android:background=“@drawable/outside”
+    app:layout_constraintEnd_toEndOf=“parent”
+    app:layout_constraintHorizontal_bias=“0.937"
+    app:layout_constraintStart_toStartOf=“parent”
+    app:layout_constraintTop_toTopOf=“parent”>
+<com.google.android.material.button.MaterialButton
+android:id=“@+id/select5”
+    android:layout_width=“wrap_content”
+    android:layout_height=“30dp”
+    android:layout_alignParentBottom=“true”
+    android:layout_marginLeft=“5dp”
+    android:layout_marginBottom=“1dp”
+    android:backgroundTint=‘@color/design_default_color_background’
+    android:text=“SELECT”
+    android:textColor=“@color/black”
+    android:textSize=“7dp”>
+    </com.google.android.material.button.MaterialButton>
+<TextView
+android:id=“@+id/textView4"
+    android:layout_width=“wrap_content”
+    android:layout_height=“wrap_content”
+    android:padding=“10dp”
+    android:text=“Group Classes”
+    android:textAllCaps=“true”
+    android:textColor=“@color/black”
+    android:textSize=“10dp”
+    android:textStyle=“bold” />
+    </RelativeLayout>
+<RelativeLayout
+android:id=“@+id/bodybuilding”
+    android:layout_width=“108dp”
+    android:layout_height=“97dp”
+    android:layout_marginTop=“508dp”
+    android:background=“@drawable/bodybuilding”
+    app:layout_constraintEnd_toEndOf=“parent”
+    app:layout_constraintHorizontal_bias=“0.056”
+    app:layout_constraintStart_toStartOf=“parent”
+    app:layout_constraintTop_toTopOf=“parent”>
+<com.google.android.material.button.MaterialButton
+android:id=“@+id/select3"
+    android:layout_width=“wrap_content”
+    android:layout_height=“32dp”
+    android:layout_alignParentBottom=“true”
+    android:layout_marginLeft=“5dp”
+    android:layout_marginBottom=“1dp”
+    android:backgroundTint=‘@color/design_default_color_background’
+    android:text=“SELECT”
+    android:textColor=“@color/black”
+    android:textSize=“7dp”>
+    </com.google.android.material.button.MaterialButton>
+<TextView
+android:layout_width=“wrap_content”
+    android:layout_height=“wrap_content”
+    android:padding=“10dp”
+    android:text=“Body Building”
+    android:textAllCaps=“true”
+    android:textColor=“@color/black”
+    android:textSize=“10dp”
+    android:textStyle=“bold” />
+    </RelativeLayout>
+<RelativeLayout
+android:id=“@+id/weightloss”
+    android:layout_width=“112dp”
+    android:layout_height=“99dp”
+    android:layout_marginTop=“508dp”
+    android:background=“@drawable/weightloss”
+    app:layout_constraintEnd_toEndOf=“parent”
+    app:layout_constraintHorizontal_bias=“0.498”
+    app:layout_constraintStart_toStartOf=“parent”
+    app:layout_constraintTop_toTopOf=“parent”>
+<com.google.android.material.button.MaterialButton
+android:id=“@+id/select4"
+    android:layout_width=“wrap_content”
+    android:layout_height=“29dp”
+    android:layout_alignParentBottom=“true”
+    android:layout_marginLeft=“5dp”
+    android:layout_marginBottom=“1dp”
+    android:backgroundTint=‘@color/design_default_color_background’
+    android:text=“SELECT”
+    android:textColor=“@color/black”
+    android:textSize=“7dp”>
+    </com.google.android.material.button.MaterialButton>
+<TextView
+android:id=“@+id/textView5”
+    android:layout_width=“wrap_content”
+    android:layout_height=“wrap_content”
+    android:padding=“10dp”
+    android:text=“Weight Loss”
+    android:textAllCaps=“true”
+    android:textColor=“@color/black”
+    android:textSize=“10dp”
+    android:textStyle=“bold” />
+    </RelativeLayout>
+<RelativeLayout
+android:id=“@+id/yoga”
+    android:layout_width=“111dp”
+    android:layout_height=“94dp”
+    android:layout_marginTop=“384dp”
+    android:background=“@drawable/yoga”
+    app:layout_constraintEnd_toEndOf=“parent”
+    app:layout_constraintHorizontal_bias=“0.946"
+    app:layout_constraintStart_toStartOf=“parent”
+    app:layout_constraintTop_toTopOf=“parent”>
+<com.google.android.material.button.MaterialButton
+android:id=“@+id/select2”
+    android:layout_width=“wrap_content”
+    android:layout_height=“30dp”
+    android:layout_alignParentBottom=“true”
+    android:layout_marginLeft=“5dp”
+    android:layout_marginBottom=“1dp”
+    android:backgroundTint=‘@color/design_default_color_background’
+    android:text=“SELECT”
+    android:textColor=“@color/black”
+    android:textSize=“7dp”>
+    </com.google.android.material.button.MaterialButton>
+<TextView
+android:id=“@+id/textView3"
+    android:layout_width=“wrap_content”
+    android:layout_height=“wrap_content”
+    android:padding=“10dp”
+    android:text=“Yoga”
+    android:textAllCaps=“true”
+    android:textColor=“@color/black”
+    android:textSize=“10dp”
+    android:textStyle=“bold” />
 
+-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
