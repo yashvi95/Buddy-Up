@@ -61,16 +61,35 @@ public class FragmentFirst extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Information info = snapshot.getValue(Information.class);
                     String profileInfo;
+                    /*
                     if(info.getC1() == null || info.getC2() == null || info.getC3() == null)
                     {
                         profileInfo = info.getFirstname() + " " + info.getLastname() + "\n" + "USERNAME: " + info.getUsername() + "\nGYM: "
                                 + info.getGym() + "\n";
                     }
-                    else
+                    */
+
+                    profileInfo = info.getFirstname() + " " + info.getLastname() + "\n" + "USERNAME: " + info.getUsername() + "\nGYM: "
+                            + info.getGym() + "\n\nPREFERRED EXERCISES:\n";// + info.getC1() + "\n" + info.getC2() + "\n" + info.getC3() + "\n";
+
+                    if(info.getC1() != null)
                     {
-                        profileInfo = info.getFirstname() + " " + info.getLastname() + "\n" + "USERNAME: " + info.getUsername() + "\nGYM: "
-                                + info.getGym() + "\n\nPREFERRED EXERCISES:\n" + info.getC1() + "\n" + info.getC2() + "\n" + info.getC3() + "\n";
+                        profileInfo = profileInfo + info.getC1() + "\n";
                     }
+                    if(info.getC2() != null)
+                    {
+                        profileInfo = profileInfo + info.getC2() + "\n";
+                    }
+                    if(info.getC3() != null)
+                    {
+                        profileInfo = profileInfo + info.getC3() + "\n";
+                    }
+
+                    if(info.getC1() == null && info.getC2() == null && info.getC3() == null)
+                    {
+                        profileInfo = profileInfo + "None\n";
+                    }
+
                     list_of_users.add(profileInfo);
                 }
                 arrayAdapter.notifyDataSetChanged();
