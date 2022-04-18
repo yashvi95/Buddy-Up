@@ -17,7 +17,14 @@ public class User {
 
 
     }
+/*
+    public static boolean getEmail(String s) {
+        if(getEmail(s) != )
+        {
 
+        }
+    }
+*/
     public String getFirstname() {
         return firstname;
     }

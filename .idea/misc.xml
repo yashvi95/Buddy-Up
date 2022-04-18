@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.1" />
+        <entry key="..\:/Users/ronan/AndroidStudioProjects/Buddy-Up/app/src/main/res/drawable/ic_baseline_emoji_people_24.xml" value="0.3675" />
+        <entry key="..\:/Users/ronan/AndroidStudioProjects/Buddy-Up/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.3675" />
         <entry key="..\:/Users/ronan/AndroidStudioProjects/Buddy-Up/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.3675" />
         <entry key="..\:/Users/ronan/AndroidStudioProjects/Buddy-Up/app/src/main/res/layout/activity_after_login_test.xml" value="0.28489583333333335" />
         <entry key="..\:/Users/ronan/AndroidStudioProjects/Buddy-Up/app/src/main/res/layout/activity_home.xml" value="0.2598958333333333" />
@@ -27,13 +29,7 @@
         <entry key="app/src/main/res/layout/activity_home2.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login_page.xml" value="0.2604166666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/base_after_login_for_fragments.xml" value="0.22916666666666666" />
-        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.1539855072463768" />
-        <entry key="app/src/main/res/layout/fragment_second.xml" value="0.22916666666666666" />
-        <entry key="app/src/main/res/layout/fragment_third.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/list_item.xml" value="0.1539855072463768" />
-        <entry key="app/src/main/res/layout/users_display_layout.xml" value="0.22916666666666666" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.165" />
       </map>
     </option>
   </component>

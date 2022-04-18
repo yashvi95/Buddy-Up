@@ -34,42 +34,42 @@ public class FragmentThird extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View FragmentThirdView = inflater.inflate(R.layout.fragment_third, container, false);
+/*
+        name = FragmentThirdView.findViewById(R.id.name_profile);
+        email = FragmentThirdView.findViewById(R.id.email_text);
+        phone = FragmentThirdView.findViewById(R.id.phone_text);
+        category1 = FragmentThirdView.findViewById(R.id.cat1_text);
+        category2 = FragmentThirdView.findViewById(R.id.cat2_text);
+        category3 = FragmentThirdView.findViewById(R.id.cat3_text);
 
-//        name = FragmentThirdView.findViewById(R.id.name_profile);
-//        email = FragmentThirdView.findViewById(R.id.email_text);
-//        phone = FragmentThirdView.findViewById(R.id.phone_text);
-//        category1 = FragmentThirdView.findViewById(R.id.cat1_text);
-//        category2 = FragmentThirdView.findViewById(R.id.cat2_text);
-//        category3 = FragmentThirdView.findViewById(R.id.cat3_text);
-//
-//        user = FirebaseAuth.getInstance().getCurrentUser();
-//
-//        UserRef = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
-//
-//        UserRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-//                User users = datasnapshot.getValue(User.class);
-//
-//                name.setText(users.getFirstname());
-//
-//                email.setText(users.getEmail());
-//
-//                phone.setText(users.getPhonenumber());
-//
-//                category1.setText(users.getC1());
-//
-//                category2.setText(users.getC2());
-//
-//                category3.setText(users.getC3());
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
+        UserRef = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
+
+        UserRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                User users = datasnapshot.getValue(User.class);
+
+                name.setText(users.getFirstname());
+
+                email.setText(users.getEmail());
+
+                phone.setText(users.getPhonenumber());
+
+                category1.setText(users.getC1());
+
+                category2.setText(users.getC2());
+
+                category3.setText(users.getC3());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+*/
         return FragmentThirdView;
     }
 
