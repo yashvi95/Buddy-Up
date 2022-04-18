@@ -61,6 +61,7 @@ public class FragmentFirst extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Information info = snapshot.getValue(Information.class);
                     String profileInfo;
+
                     /*
                     if(info.getC1() == null || info.getC2() == null || info.getC3() == null)
                     {
