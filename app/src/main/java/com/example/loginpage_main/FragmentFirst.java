@@ -60,7 +60,17 @@ public class FragmentFirst extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Information info = snapshot.getValue(Information.class);
-                    String profileInfo = info.getFirstname() + " " + info.getLastname() + "\n" + info.getUsername() + "\nGYM: " + info.getGym() + "\n";
+                    String profileInfo;
+                    if(info.getC1() == null || info.getC2() == null || info.getC3() == null)
+                    {
+                        profileInfo = info.getFirstname() + " " + info.getLastname() + "\n" + "USERNAME: " + info.getUsername() + "\nGYM: "
+                                + info.getGym() + "\n";
+                    }
+                    else
+                    {
+                        profileInfo = info.getFirstname() + " " + info.getLastname() + "\n" + "USERNAME: " + info.getUsername() + "\nGYM: "
+                                + info.getGym() + "\n\nPREFERRED EXERCISES:\n" + info.getC1() + "\n" + info.getC2() + "\n" + info.getC3() + "\n";
+                    }
                     list_of_users.add(profileInfo);
                 }
                 arrayAdapter.notifyDataSetChanged();
