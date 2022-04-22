@@ -34,7 +34,8 @@ public class FragmentThird extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View FragmentThirdView = inflater.inflate(R.layout.fragment_third, container, false);
-/*
+
+
         name = FragmentThirdView.findViewById(R.id.name_profile);
         email = FragmentThirdView.findViewById(R.id.email_text);
         phone = FragmentThirdView.findViewById(R.id.phone_text);
@@ -49,9 +50,10 @@ public class FragmentThird extends Fragment {
         UserRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-                User users = datasnapshot.getValue(User.class);
+                //User users = datasnapshot.getValue(User.class);
+                Information users = datasnapshot.getValue(Information.class);
 
-                name.setText(users.getFirstname());
+                name.setText(users.getFirstname() + " " + users.getLastname());
 
                 email.setText(users.getEmail());
 
@@ -69,7 +71,7 @@ public class FragmentThird extends Fragment {
 
             }
         });
-*/
+
         return FragmentThirdView;
     }
 
