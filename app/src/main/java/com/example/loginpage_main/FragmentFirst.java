@@ -23,8 +23,9 @@ public class FragmentFirst extends Fragment {
 
     private View FragmentFirstView;
     private ListView list_view;
-    private ArrayAdapter<String> arrayAdapter;
-    private ArrayList<String> list_of_users = new ArrayList<>();
+    private MyCustomListAdapter adapter1;
+    private ArrayAdapter<Information> arrayAdapter;
+    private ArrayList<Information> list_of_users = new ArrayList<>();
 
     private DatabaseReference UserRef;
 
@@ -42,16 +43,24 @@ public class FragmentFirst extends Fragment {
         UserRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
         InitializeFields();
-
+        /*
+        list_view = (ListView) FragmentFirstView.findViewById(R.id.list_viewFragFirst);
+        MyCustomListAdapter adapter1 = new MyCustomListAdapter(getContext(), R.layout.my_list_item, list_of_users);
+        list_view.setAdapter(adapter1);
+         */
         RetrieveAndDisplayUsers();
+
+//        MyCustomListAdapter adapter1 = new MyCustomListAdapter(this, R.layout.my_list_item, list_of_users)
 
         return FragmentFirstView;
     }
 
     private void InitializeFields() {
-        list_view = (ListView) FragmentFirstView.findViewById(R.id.list_view);
-        arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, list_of_users);
-        list_view.setAdapter(arrayAdapter);
+        list_view = (ListView) FragmentFirstView.findViewById(R.id.list_viewFragFirst);
+        //arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, list_of_users);
+        adapter1 = new MyCustomListAdapter(getContext(), R.layout.my_list_item, list_of_users);
+//        list_view.setAdapter(arrayAdapter);
+        list_view.setAdapter(adapter1);
     }
 
     private void RetrieveAndDisplayUsers() {
@@ -69,7 +78,7 @@ public class FragmentFirst extends Fragment {
                                 + info.getGym() + "\n";
                     }
                     */
-
+/*
                     profileInfo = info.getFirstname() + " " + info.getLastname() + "\n" + "USERNAME: " + info.getUsername() + "\nGYM: "
                             + info.getGym() + "\n\nPREFERRED EXERCISES:\n";// + info.getC1() + "\n" + info.getC2() + "\n" + info.getC3() + "\n";
 
@@ -90,10 +99,10 @@ public class FragmentFirst extends Fragment {
                     {
                         profileInfo = profileInfo + "None\n";
                     }
-
-                    list_of_users.add(profileInfo);
+*/
+                    list_of_users.add(info);
                 }
-                arrayAdapter.notifyDataSetChanged();
+                adapter1.notifyDataSetChanged();
             }
 
             @Override
@@ -102,93 +111,4 @@ public class FragmentFirst extends Fragment {
             }
         });
     }
-
-
-    /*
-    private View ContactsView;
-    private RecyclerView myContactsList;
-
-    private DatabaseReference ContactsRef, UsersRef;
-    private FirebaseAuth mAuth;
-    private String currentUserID;
-
-    public FragmentFirst() {
-
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        ContactsView = inflater.inflate(R.layout.fragment_first, container, false);
-
-        myContactsList = (RecyclerView) ContactsView.findViewById(R.id.user_list);
-        myContactsList.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        mAuth = FirebaseAuth.getInstance();
-        currentUserID = mAuth.getCurrentUser().getUid();
-
-        ContactsRef = FirebaseDatabase.getInstance().getReference().child(currentUserID);
-        UsersRef = FirebaseDatabase.getInstance().getReference().child("Users");
-
-        return ContactsView;
-    }
-     */
-/*
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<User>()
-                .setQuery(ContactsRef, User.class)
-                .build();
-
-        FirebaseRecyclerAdapter<User, ContactsView> adapter
-                = new FirebaseRecyclerAdapter<User, FragmentFirst.ContactsView>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull FragmentFirst.ContactsView holder, int position, @NonNull User model)
-            {
-                String user = getRef(position).getKey();
-
-                UsersRef.child(user).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot)
-                    {
-                        String ProfileUsername = snapshot.child("username").getValue().toString();
-
-                        holder.userName.setText(ProfileUsername);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-            }
-
-            @NonNull
-            @Override
-            public FragmentFirst.ContactsView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.users_display_layout, parent, false);
-                ContactsView viewHolder = new ContactsView(view);
-                return viewHolder;
-            }
-        };
-
-        myContactsList.setAdapter(adapter);
-        adapter.startListening();
-    }
-
-    public static class ContactsView extends RecyclerView.ViewHolder
-    {
-        TextView userName;
-
-        public ContactsView(@NonNull View itemView) {
-            super(itemView);
-
-            userName = itemView.findViewById(R.id.user_profile_name);
-        }
-    }
-    */
 }
