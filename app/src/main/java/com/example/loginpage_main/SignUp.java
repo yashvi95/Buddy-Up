@@ -3,13 +3,19 @@ package com.example.loginpage_main;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +38,15 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private TextView signbtn;
     private EditText editTextfirstname, editTextlastname, editTextusername, editTextpassword, editTextphonenumber, editTextemail, editTextgym,category1, category2, category3;
 
+    String c1 = "Choose a Category";
+    String c2 = "Choose a Category";
+    String c3 = "Choose a Category";
+
+    Spinner spinnerCategories01;
+    Spinner spinnerCategories02;
+    Spinner spinnerCategories03;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +57,104 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         mAuth = FirebaseAuth.getInstance();
        // profilePic = findViewById(R.id.ProfilePic);
 
+        spinnerCategories01 = findViewById(R.id.spinnerCategories01);
+        ArrayAdapter<CharSequence>adapter01 = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_dropdown_item);
 
+        adapter01.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCategories01.setAdapter(adapter01);
+        spinnerCategories01.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                switch (position)
+                {
+                    //Choose a Category
+                    case 0:
+                        TextView tv = (TextView) view;
+                        tv.setTextColor(Color.RED);
+                        c1 = "Choose a Category";
+                        Log.i("CATEGORY 1:",c1);
+                        Toast.makeText(SignUp.this, "Please select a Category", Toast.LENGTH_LONG).show();
+                        break;
+                    default:
+                        c1 = spinnerCategories01.getSelectedItem().toString();
+                        Log.i("CATEGORY 1:",c1);
+                        Toast.makeText(SignUp.this, "Chosen", Toast.LENGTH_LONG).show();
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spinnerCategories02 = findViewById(R.id.spinnerCategories02);
+        ArrayAdapter<CharSequence>adapter02 = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_dropdown_item);
+
+        adapter02.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCategories02.setAdapter(adapter02);
+        spinnerCategories02.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                switch (position)
+                {
+                    //Choose a Category
+                    case 0:
+                        TextView tv = (TextView) view;
+                        tv.setTextColor(Color.RED);
+                        c2 = "Choose a Category";
+                        Log.i("CATEGORY 2:",c2);
+                        Toast.makeText(SignUp.this, "Please select a Category", Toast.LENGTH_LONG).show();
+                        break;
+                    default:
+                        c2 = spinnerCategories02.getSelectedItem().toString();
+                        Log.i("CATEGORY 2:",c2);
+                        Toast.makeText(SignUp.this, "Chosen", Toast.LENGTH_LONG).show();
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spinnerCategories03 = findViewById(R.id.spinnerCategories03);
+        ArrayAdapter<CharSequence>adapter03 = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_dropdown_item);
+
+        adapter03.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCategories03.setAdapter(adapter03);
+        spinnerCategories03.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                switch (position)
+                {
+                    //Choose a Category
+                    case 0:
+                        TextView tv = (TextView) view;
+                        tv.setTextColor(Color.RED);
+                        c3 = "Choose a Category";
+                        Log.i("CATEGORY 3:",c3);
+                        Toast.makeText(SignUp.this, "Please select a Category", Toast.LENGTH_LONG).show();
+                        break;
+                    default:
+                        c3 = spinnerCategories03.getSelectedItem().toString();
+                        Log.i("CATEGORY 3:",c3);
+                        Toast.makeText(SignUp.this, "Chosen", Toast.LENGTH_LONG).show();
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         editTextfirstname = (EditText) findViewById(R.id.firstname);
         editTextlastname = (EditText) findViewById(R.id.lastname);
@@ -51,10 +163,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         editTextemail = (EditText) findViewById(R.id.email);
         editTextphonenumber = (EditText) findViewById(R.id.phonenumber);
         editTextgym = (EditText) findViewById(R.id.gym);
-        category1 = (EditText) findViewById(R.id.category1);
-        category2 = (EditText) findViewById(R.id.category2);
-        category3 = (EditText) findViewById(R.id.category3);
-
         signbtn = (Button) findViewById(R.id.signup);
         signbtn.setOnClickListener(this);
     }
@@ -76,9 +184,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         String email = editTextemail.getText().toString().trim();
         String phonenumber = editTextphonenumber.getText().toString().trim();
         String gym = editTextgym.getText().toString().trim();
-        String c1 = category1.getText().toString().trim();
-        String c2 = category2.getText().toString().trim();
-        String c3 = category3.getText().toString().trim();
 
         if (firstname.isEmpty()) {
             editTextfirstname.setError("Required");
@@ -126,41 +231,21 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             editTextgym.requestFocus();
             return;
         }
-        if (c1.isEmpty()) {
-            category1.setError("Required");
-            category1.requestFocus();
+        if (c1.isEmpty() || c1 == "Choose a Category") {
+            ((TextView)spinnerCategories01.getSelectedView()).setError("Please choose a first category");
+            spinnerCategories01.requestFocus();
             return;
         }
-        if (c2.isEmpty()) {
-            category2.setError("Required");
-            category2.requestFocus();
+        if (c2.isEmpty() || c2 == "Choose a Category") {
+            ((TextView)spinnerCategories02.getSelectedView()).setError("Please choose a second category");
+            spinnerCategories02.requestFocus();
             return;
         }
-        if (c3.isEmpty()) {
-            category3.setError("Required");
-            category3.requestFocus();
+        if (c3.isEmpty() || c3 == "Choose a Category") {
+            ((TextView)spinnerCategories03.getSelectedView()).setError("Please choose a third category");
+            spinnerCategories03.requestFocus();
             return;
         }
-
-        if((c1.toLowerCase() != "cardio") && (c1.toLowerCase() != "body building" ) && (c1.toLowerCase() != "strength training") && (c1.toLowerCase() != "weight loss") && (c1.toLowerCase() != "yoga")){
-            category1.setError("Check Spellingc1 " + c1.toLowerCase());
-            category1.requestFocus();
-            return;
-
-        }
-
-        if((c2.toLowerCase() != "cardio") && (c2.toLowerCase() != "body building") && (c2.toLowerCase() != "strength training") && (c2.toLowerCase() != "weight loss") && (c2.toLowerCase() != "yoga")){
-            category2.setError("Check Spellingc2 " + c2.toLowerCase());
-            category2.requestFocus();
-            return;
-
-        }
-        if((c3.toLowerCase() != "cardio") && (c3.toLowerCase() != "body building") && (c3.toLowerCase() != "strength training") && (c3.toLowerCase() != "weight loss") && (c3.toLowerCase() != "yoga")){
-            category3.setError("Check Spellingc3 " + c3.toLowerCase());
-            category3.requestFocus();
-            return;
-        }
-
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {

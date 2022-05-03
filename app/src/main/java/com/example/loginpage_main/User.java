@@ -15,7 +15,6 @@ public class User {
         this.c2 = c2;
         this.c3 = c3;
     }
-
     public User(String username, String gym, String c1, String c2, String c3) {
         this.username = username;
         this.gym = gym;

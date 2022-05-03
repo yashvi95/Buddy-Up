@@ -13,60 +13,51 @@
         android:layout_height="match_parent"
         tools:context=".SignUp">
 
-        <EditText
-            android:id="@+id/category1"
+        <Spinner
+            android:id="@+id/spinnerCategories01"
             android:layout_width="382dp"
             android:layout_height="65dp"
-            android:layout_centerHorizontal="true"
-            android:background="#70ffffff"
+            android:background="@drawable/category_background"
             android:drawableLeft="@drawable/ic_baseline_star_24"
-            android:drawablePadding="5dp"
-            android:hint="Type in Category"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
+            android:drawablePadding="50dp"
+            android:padding="20dp"
+            android:spinnerMode="dropdown"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.482"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardio"
             app:layout_constraintVertical_bias="0.0" />
 
-        <EditText
-            android:id="@+id/category2"
+        <Spinner
+            android:id="@+id/spinnerCategories02"
             android:layout_width="382dp"
             android:layout_height="65dp"
-            android:layout_centerHorizontal="true"
-            android:background="#70ffffff"
+            android:background="@drawable/category_background"
             android:drawableLeft="@drawable/ic_baseline_star_24"
-            android:drawablePadding="5dp"
-            android:hint="Type in Category"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.482"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/category1" />
-
-        <EditText
-            android:id="@+id/category3"
-            android:layout_width="382dp"
-            android:layout_height="65dp"
-            android:layout_centerHorizontal="true"
-            android:background="#70ffffff"
-            android:drawableLeft="@drawable/ic_baseline_star_24"
-            android:drawablePadding="5dp"
-            android:hint="Type in Category"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
+            android:drawablePadding="50dp"
+            android:padding="20dp"
+            android:spinnerMode="dropdown"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.482"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/category2"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerCategories01"
             app:layout_constraintVertical_bias="0.0" />
+
+        <Spinner
+            android:id="@+id/spinnerCategories03"
+            android:layout_width="382dp"
+            android:layout_height="65dp"
+            android:background="@drawable/category_background"
+            android:drawableLeft="@drawable/ic_baseline_star_24"
+            android:drawablePadding="50dp"
+            android:padding="20dp"
+            android:spinnerMode="dropdown"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerCategories02"
+            app:layout_constraintVertical_bias="0.0" />
+
 
         <TextView
             android:id="@+id/strengthtraining"
@@ -89,7 +80,6 @@
             android:layout_height="68dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="10dp"
             android:background="#70ffffff"
             android:drawableLeft="@drawable/ic_baseline_location_on_24"
             android:drawablePadding="5dp"
@@ -269,7 +259,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/category3" />
+            app:layout_constraintTop_toBottomOf="@+id/spinnerCategories03" />
 
         <TextView
             android:id="@+id/weightraining"
@@ -395,6 +385,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="20dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
