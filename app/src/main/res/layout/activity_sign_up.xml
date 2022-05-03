@@ -13,53 +13,73 @@
         android:layout_height="match_parent"
         tools:context=".SignUp">
 
-        <EditText
-            android:id="@+id/category1"
-            android:layout_width="382dp"
-            android:layout_height="65dp"
-            android:layout_centerHorizontal="true"
-            android:background="#70ffffff"
-            android:drawableLeft="@drawable/ic_baseline_star_24"
-            android:drawablePadding="5dp"
-            android:hint="Type in Category"
+        <TextView
+            android:id="@+id/schedule"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:drawablePadding="9dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:gravity="center"
             android:padding="10dp"
+            android:text="SCHEDULE A TIME"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"
+            android:textSize="30dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.482"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardio"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/category3"
+            app:layout_constraintVertical_bias="1.0" />
 
-        <EditText
+        <TextView
+            android:id="@+id/upload"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:drawablePadding="9dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="UPLOAD A PICTURE"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/ProfilePic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scheduling"
+            app:layout_constraintVertical_bias="0.541" />
+
+        <Spinner
             android:id="@+id/category2"
             android:layout_width="382dp"
             android:layout_height="65dp"
+            android:textStyle="bold"
             android:layout_centerHorizontal="true"
-            android:background="#70ffffff"
-            android:drawableLeft="@drawable/ic_baseline_star_24"
             android:drawablePadding="5dp"
-            android:hint="Type in Category"
             android:padding="10dp"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.482"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/category1" />
+            app:layout_constraintTop_toBottomOf="@+id/category1"
+            tools:layout_editor_absoluteY="957dp" />
 
-        <EditText
+
+        <Spinner
             android:id="@+id/category3"
             android:layout_width="382dp"
             android:layout_height="65dp"
             android:layout_centerHorizontal="true"
-            android:background="#70ffffff"
-            android:drawableLeft="@drawable/ic_baseline_star_24"
             android:drawablePadding="5dp"
-            android:hint="Type in Category"
             android:padding="10dp"
             android:textColor="@color/black"
+            android:textStyle="bold"
             android:textColorHint="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -67,6 +87,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/category2"
             app:layout_constraintVertical_bias="0.0" />
+
 
         <TextView
             android:id="@+id/strengthtraining"
@@ -253,23 +274,25 @@
             app:layout_constraintTop_toBottomOf="@+id/gym"
             app:layout_constraintVertical_bias="0.0" />
 
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/signup"
             android:layout_width="112dp"
             android:layout_height="69dp"
             android:layout_centerHorizontal="true"
             android:layout_margin="10dp"
+            android:layout_marginTop="4dp"
             android:backgroundTint='@color/design_default_color_background'
             android:drawablePadding="10dp"
             android:padding="20dp"
             android:text="Sign Up"
-            android:textColor="@color/black"
 
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/category3" />
+            app:layout_constraintTop_toBottomOf="@+id/select" />
 
         <TextView
             android:id="@+id/weightraining"
@@ -395,6 +418,86 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="20dp" />
+
+        <Spinner
+            android:id="@+id/category1"
+            android:layout_width="382dp"
+            android:layout_height="65dp"
+            android:layout_centerHorizontal="true"
+            android:drawablePadding="5dp"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textColorHint="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/category2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardio"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Spinner
+            android:id="@+id/scheduling"
+            android:layout_width="382dp"
+            android:layout_height="65dp"
+            android:layout_centerHorizontal="true"
+            android:drawablePadding="5dp"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textColorHint="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/upload"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.689"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/schedule"
+            app:layout_constraintVertical_bias="0.088" />
+
+
+        <Button
+            android:id="@+id/select"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:text="Upload Image"
+            android:drawablePadding="9dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/signup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ProfilePic"
+            app:layout_constraintVertical_bias="0.476" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ProfilePic"
+            android:layout_width="142dp"
+            android:layout_height="153dp"
+            android:padding="5dp"
+            android:src="@drawable/profile"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/select"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/upload" />
+
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="391dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

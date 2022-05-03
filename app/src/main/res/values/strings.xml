@@ -2,4 +2,15 @@
     <string name="app_name">BuddyUp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
+<!--    <string-array name="Categories">-->
+<!--        <item>Body Building</item>-->
+<!--        <item>Strength Training</item>-->
+<!--        <item>Weight Loss</item>-->
+<!--        <item>Yoga</item>-->
+<!--        <item>Cardio</item>-->
+<!--        <item>Outdoor Activities</item>-->
+<!--    </string-array>-->
 </resources>
