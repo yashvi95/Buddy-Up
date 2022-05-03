@@ -1,51 +1,69 @@
 package com.example.loginpage_main;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.provider.MediaStore;
 import android.util.Patterns;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
+
     private FirebaseAuth mAuth;
-    private ImageView profilePic;
-    private TextView signbtn;
-    private EditText editTextfirstname, editTextlastname, editTextusername, editTextpassword, editTextphonenumber, editTextemail, editTextgym,category1, category2, category3;
-
-    String c1 = "Choose a Category";
-    String c2 = "Choose a Category";
-    String c3 = "Choose a Category";
-
-    Spinner spinnerCategories01;
-    Spinner spinnerCategories02;
-    Spinner spinnerCategories03;
-
+    private CircleImageView profilePic;
+    private TextView signbtn,selectbtn,uploadbtn;
+    ActivityResultLauncher<Intent> activityResultLauncher;
+    private EditText editTextfirstname, editTextlastname, editTextusername, editTextpassword, editTextphonenumber, editTextemail, editTextgym;
+    Spinner category1, category2, category3, schedule;
+    String cat1, cat2, cat3, schdl;
+    String[] Categories = {"Choose a Category", "Body Building","Strength Training","Weight Loss","Yoga","Cardio","Outdoor Activities"};
+    String[] Scheduling = {"Choose a time that works best for you!","Morning","Afternoon","Evening","Flexible"};
+    FirebaseStorage storage;
+    StorageReference storageReference;
+    private Uri filepath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,106 +73,22 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mAuth = FirebaseAuth.getInstance();
-       // profilePic = findViewById(R.id.ProfilePic);
+        profilePic = findViewById(R.id.ProfilePic);
+        selectbtn = findViewById(R.id.select);
 
-        spinnerCategories01 = findViewById(R.id.spinnerCategories01);
-        ArrayAdapter<CharSequence>adapter01 = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_dropdown_item);
-
-        adapter01.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCategories01.setAdapter(adapter01);
-        spinnerCategories01.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        selectbtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                switch (position)
-                {
-                    //Choose a Category
-                    case 0:
-                        TextView tv = (TextView) view;
-                        tv.setTextColor(Color.RED);
-                        c1 = "Choose a Category";
-                        Log.i("CATEGORY 1:",c1);
-                        Toast.makeText(SignUp.this, "Please select a Category", Toast.LENGTH_LONG).show();
-                        break;
-                    default:
-                        c1 = spinnerCategories01.getSelectedItem().toString();
-                        Log.i("CATEGORY 1:",c1);
-                        Toast.makeText(SignUp.this, "Chosen", Toast.LENGTH_LONG).show();
-                        break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+            public void onClick(View v) {
+                ImagePicker.with(SignUp.this)
+                        .crop()	    			//Crop image(Optional), Check Customization for more option
+                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
+                        .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                        .start();
             }
         });
 
-        spinnerCategories02 = findViewById(R.id.spinnerCategories02);
-        ArrayAdapter<CharSequence>adapter02 = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_dropdown_item);
-
-        adapter02.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCategories02.setAdapter(adapter02);
-        spinnerCategories02.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                switch (position)
-                {
-                    //Choose a Category
-                    case 0:
-                        TextView tv = (TextView) view;
-                        tv.setTextColor(Color.RED);
-                        c2 = "Choose a Category";
-                        Log.i("CATEGORY 2:",c2);
-                        Toast.makeText(SignUp.this, "Please select a Category", Toast.LENGTH_LONG).show();
-                        break;
-                    default:
-                        c2 = spinnerCategories02.getSelectedItem().toString();
-                        Log.i("CATEGORY 2:",c2);
-                        Toast.makeText(SignUp.this, "Chosen", Toast.LENGTH_LONG).show();
-                        break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        spinnerCategories03 = findViewById(R.id.spinnerCategories03);
-        ArrayAdapter<CharSequence>adapter03 = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_dropdown_item);
-
-        adapter03.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCategories03.setAdapter(adapter03);
-        spinnerCategories03.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                switch (position)
-                {
-                    //Choose a Category
-                    case 0:
-                        TextView tv = (TextView) view;
-                        tv.setTextColor(Color.RED);
-                        c3 = "Choose a Category";
-                        Log.i("CATEGORY 3:",c3);
-                        Toast.makeText(SignUp.this, "Please select a Category", Toast.LENGTH_LONG).show();
-                        break;
-                    default:
-                        c3 = spinnerCategories03.getSelectedItem().toString();
-                        Log.i("CATEGORY 3:",c3);
-                        Toast.makeText(SignUp.this, "Chosen", Toast.LENGTH_LONG).show();
-                        break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
 
         editTextfirstname = (EditText) findViewById(R.id.firstname);
         editTextlastname = (EditText) findViewById(R.id.lastname);
@@ -163,9 +97,79 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         editTextemail = (EditText) findViewById(R.id.email);
         editTextphonenumber = (EditText) findViewById(R.id.phonenumber);
         editTextgym = (EditText) findViewById(R.id.gym);
+
         signbtn = (Button) findViewById(R.id.signup);
         signbtn.setOnClickListener(this);
+
+
+        category1 = (Spinner) findViewById(R.id.category1);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,Categories);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        category1.setAdapter(arrayAdapter);
+
+        category2 = (Spinner) findViewById(R.id.category2);
+        ArrayAdapter arrayAdapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,Categories);
+        arrayAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        category2.setAdapter(arrayAdapter2);
+
+        category3 = (Spinner) findViewById(R.id.category3);
+        ArrayAdapter arrayAdapter3 = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,Categories);
+        arrayAdapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        category3.setAdapter(arrayAdapter3);
+
+        schedule = (Spinner) findViewById(R.id.scheduling);
+        ArrayAdapter arrayAdapter4 = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,Scheduling);
+        arrayAdapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        schedule.setAdapter(arrayAdapter4);
+
+
+
+
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        filepath = data.getData();
+        profilePic.setImageURI(filepath);
+        uploadimage();
+    }
+
+    private void uploadimage() {
+        if(filepath != null)
+        {
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+
+            StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+            ref.putFile(filepath)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.dismiss();
+                            Toast.makeText(SignUp.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
+                            Toast.makeText(SignUp.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                    .getTotalByteCount());
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                        }
+                    });
+        }
+    }
+    
 
     @Override
     public void onClick(View view) {
@@ -174,7 +178,10 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 signupbtn();
                 break;
         }
+
     }
+
+
 
     private void signupbtn() {
         String firstname = editTextfirstname.getText().toString().trim();
@@ -184,6 +191,17 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         String email = editTextemail.getText().toString().trim();
         String phonenumber = editTextphonenumber.getText().toString().trim();
         String gym = editTextgym.getText().toString().trim();
+
+        cat1 = category1.getSelectedItem().toString();
+        cat2 = category2.getSelectedItem().toString();
+        cat3 = category3.getSelectedItem().toString();
+        schdl = schedule.getSelectedItem().toString();
+        String image = UUID.randomUUID().toString();
+
+        TextView errorText = (TextView)category1.getSelectedView();
+        TextView errorText2 = (TextView)schedule.getSelectedView();
+
+
 
         if (firstname.isEmpty()) {
             editTextfirstname.setError("Required");
@@ -231,21 +249,20 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             editTextgym.requestFocus();
             return;
         }
-        if (c1.isEmpty() || c1 == "Choose a Category") {
-            ((TextView)spinnerCategories01.getSelectedView()).setError("Please choose a first category");
-            spinnerCategories01.requestFocus();
+        if(cat1 == "Choose a Category"){
+            errorText.setError("");
+            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+            errorText.setText("Choose one!");//changes the selected item
             return;
         }
-        if (c2.isEmpty() || c2 == "Choose a Category") {
-            ((TextView)spinnerCategories02.getSelectedView()).setError("Please choose a second category");
-            spinnerCategories02.requestFocus();
+        if(schdl == "Choose a time that works best for you!"){
+            errorText2.setError("");
+            errorText2.setTextColor(Color.RED);//just to highlight that this is an error
+            errorText2.setText("Choose one!");//changes the selected item
             return;
         }
-        if (c3.isEmpty() || c3 == "Choose a Category") {
-            ((TextView)spinnerCategories03.getSelectedView()).setError("Please choose a third category");
-            spinnerCategories03.requestFocus();
-            return;
-        }
+
+
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -253,7 +270,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()) {
-                            User user = new User(firstname, lastname, username, password, phonenumber, email, gym,c1,c2,c3);
+                            User user = new User(firstname, lastname, username, password, phonenumber, email, gym, cat1,cat2,cat3,schdl,image);
 
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -273,6 +290,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                         }
                     }
                 });
+
+
         }
     }
 
