@@ -51,10 +51,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
-
+    private String img;
     private FirebaseAuth mAuth;
     private CircleImageView profilePic;
-    private TextView signbtn,selectbtn,uploadbtn;
+    private TextView signbtn,selectbtn;
     ActivityResultLauncher<Intent> activityResultLauncher;
     private EditText editTextfirstname, editTextlastname, editTextusername, editTextpassword, editTextphonenumber, editTextemail, editTextgym;
     Spinner category1, category2, category3, schedule;
@@ -143,7 +143,9 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-            StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+
+            img = UUID.randomUUID().toString();
+            StorageReference ref = storageReference.child("images/"+ img);
             ref.putFile(filepath)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -196,8 +198,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         cat2 = category2.getSelectedItem().toString();
         cat3 = category3.getSelectedItem().toString();
         schdl = schedule.getSelectedItem().toString();
-        String image = UUID.randomUUID().toString();
-
+        String image = img;
         TextView errorText = (TextView)category1.getSelectedView();
         TextView errorText2 = (TextView)schedule.getSelectedView();
 
@@ -285,6 +286,12 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                                     }
                                 }
                             });
+
+
+
+
+
+
                         } else {
                             Toast.makeText(SignUp.this, "Failed to Sign Up", Toast.LENGTH_LONG).show();
                         }
