@@ -1,5 +1,6 @@
 package com.example.loginpage_main;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 import java.util.ArrayList;
 
 public class FragmentThird extends Fragment {
@@ -28,6 +31,7 @@ public class FragmentThird extends Fragment {
     TextView name, email, phone, category1, category2, category3;
     DatabaseReference UserRef;
     FirebaseUser user;
+    Button editBtn;
 
 
     @Override
@@ -46,6 +50,14 @@ public class FragmentThird extends Fragment {
         user = FirebaseAuth.getInstance().getCurrentUser();
 
         UserRef = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
+
+        editBtn = (Button) FragmentThirdView.findViewById(R.id.edit_profile);
+        editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openNewActivity();
+            }
+        });
 
         UserRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -73,6 +85,11 @@ public class FragmentThird extends Fragment {
         });
 
         return FragmentThirdView;
+    }
+
+    public void openNewActivity(){
+        Intent intent = new Intent(getActivity(), EditProfile.class);
+        startActivity(intent);
     }
 
 
