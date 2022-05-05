@@ -65,17 +65,55 @@ public class FragmentThird extends Fragment {
                 //User users = datasnapshot.getValue(User.class);
                 Information users = datasnapshot.getValue(Information.class);
 
-                name.setText(users.getFirstname() + " " + users.getLastname());
+                if(users.getFirstname() != null && users.getLastname() != null)
+                {
+                    name.setText(users.getFirstname() + " " + users.getLastname());
+                }
+                else
+                {
+                    name.setText("");
+                }
 
-                email.setText(users.getEmail());
-
-                phone.setText(users.getPhonenumber());
-
-                category1.setText(users.getC1());
-
-                category2.setText(users.getC2());
-
-                category3.setText(users.getC3());
+                if(users.getEmail() != null)
+                {
+                    email.setText(users.getEmail());
+                }
+                else
+                {
+                    email.setText("");
+                }
+                if(users.getPhonenumber() != null)
+                {
+                    phone.setText(users.getPhonenumber());
+                }
+                else
+                {
+                    phone.setText("");
+                }
+                if(users.getC1() != null)
+                {
+                    category1.setText(users.getC1());
+                }
+                else
+                {
+                    category1.setText("");
+                }
+                if(users.getC2() != null)
+                {
+                    category2.setText(users.getC2());
+                }
+                else
+                {
+                    category2.setText("");
+                }
+                if(users.getC2() != null)
+                {
+                    category3.setText(users.getC3());
+                }
+                else
+                {
+                    category3.setText("");
+                }
             }
 
             @Override

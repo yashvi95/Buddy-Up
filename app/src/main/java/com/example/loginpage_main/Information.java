@@ -1,7 +1,5 @@
 package com.example.loginpage_main;
 
-import java.lang.reflect.Constructor;
-
 public class Information {
     private String firstname;
     private String lastname;
@@ -13,20 +11,23 @@ public class Information {
     private String c1;
     private String c2;
     private String c3;
+    private String schedule;
+    private String image;
 
     public Information()
     {
 
     }
 
-    public Information(String firstname, String lastname, String username, String gym) {
+    public Information(String firstname, String lastname, String username, String gym, String schedule) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.username = username;
         this.gym = gym;
+        this.schedule = schedule;
     }
 
-    public Information(String firstname, String lastname, String username, String gym, String password, String phonenumber, String email, String c1, String c2, String c3) {
+    public Information(String firstname, String lastname, String username, String gym, String password, String phonenumber, String email, String c1, String c2, String c3, String schedule) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.username = username;
@@ -37,6 +38,7 @@ public class Information {
         this.c1 = c1;
         this.c2 = c2;
         this.c3 = c3;
+        this.schedule = schedule;
     }
 
 
@@ -119,4 +121,22 @@ public class Information {
     public void setC3(String c3) {
         this.c3 = c3;
     }
+
+    public String getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(String schedule) {
+        this.schedule = schedule;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+
 }
