@@ -64,6 +64,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     FirebaseStorage storage;
     StorageReference storageReference;
     private Uri filepath;
+    private String userImageId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,7 +144,9 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-            StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+            userImageId = UUID.randomUUID().toString();
+
+            StorageReference ref = storageReference.child("images/" + userImageId);
             ref.putFile(filepath)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -196,7 +199,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         cat2 = category2.getSelectedItem().toString();
         cat3 = category3.getSelectedItem().toString();
         schdl = schedule.getSelectedItem().toString();
-        String image = UUID.randomUUID().toString();
+        String image = userImageId;
 
         TextView errorText = (TextView)category1.getSelectedView();
         TextView errorText2 = (TextView)schedule.getSelectedView();
