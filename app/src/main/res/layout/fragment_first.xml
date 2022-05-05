@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/pastelorange"
     tools:context=".FragmentFirst"
     android:orientation="vertical">
 
     <ListView
-        android:id="@+id/list_view"
+        android:id="@+id/list_viewFragFirst"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/bottomNavigationView"/>
+        android:layout_above="@+id/bottomNavigationView"
+
+        />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
