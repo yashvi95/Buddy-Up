@@ -32,7 +32,10 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
         Button loginbtn = (Button) findViewById(R.id.LogIn_Button);
         Button signupbtn = (Button) findViewById(R.id.SignUp_Button);
         signupbtn.setOnClickListener(this);
+
+        /*
         TextView forgotpasstxt = (TextView) findViewById(R.id.forgot_pass_text);
+        */
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -96,20 +99,22 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
             }
 
         });
-
-//        signupbtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(MainActivity.this,"GOING TO SIGN UP PAGE", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
+/*
+        signupbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"GOING TO SIGN UP PAGE", Toast.LENGTH_SHORT).show();
+            }
+        });
+*/
+        /*
         forgotpasstxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(LoginPage.this,"GOING TO FORGOT PASSWORD PAGE", Toast.LENGTH_SHORT).show();
             }
         });
+        */
     }
 
     @Override
