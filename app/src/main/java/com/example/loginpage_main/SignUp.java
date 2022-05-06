@@ -262,8 +262,25 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             errorText2.setText("Choose one!");//changes the selected item
             return;
         }
+        
+        /*if((c1.toLowerCase() != "cardio") && (c1.toLowerCase() != "body building" ) && (c1.toLowerCase() != "strength training") && (c1.toLowerCase() != "weight loss") && (c1.toLowerCase() != "yoga")){
+            category1.setError("Check Spellingc1 " + c1.toLowerCase());
+            category1.requestFocus();
+            return;
 
+        }
 
+        if((c2.toLowerCase() != "cardio") && (c2.toLowerCase() != "body building") && (c2.toLowerCase() != "strength training") && (c2.toLowerCase() != "weight loss") && (c2.toLowerCase() != "yoga")){
+            category2.setError("Check Spellingc2 " + c2.toLowerCase());
+            category2.requestFocus();
+            return;
+
+        }
+        if((c3.toLowerCase() != "cardio") && (c3.toLowerCase() != "body building") && (c3.toLowerCase() != "strength training") && (c3.toLowerCase() != "weight loss") && (c3.toLowerCase() != "yoga")){
+            category3.setError("Check Spellingc3 " + c3.toLowerCase());
+            category3.requestFocus();
+            return;
+        }*/
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
