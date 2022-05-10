@@ -262,7 +262,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             errorText2.setText("Choose one!");//changes the selected item
             return;
         }
-        
+
         /*if((c1.toLowerCase() != "cardio") && (c1.toLowerCase() != "body building" ) && (c1.toLowerCase() != "strength training") && (c1.toLowerCase() != "weight loss") && (c1.toLowerCase() != "yoga")){
             category1.setError("Check Spellingc1 " + c1.toLowerCase());
             category1.requestFocus();
