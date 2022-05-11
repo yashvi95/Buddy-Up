@@ -74,10 +74,6 @@ public class MyCustomListAdapter extends ArrayAdapter<Information> {
         if(user.getImage() != null) {
             mImageRef = storage.getReference("images/" + user.getImage());
 
-            System.out.println("\n\n\n\n");
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAASUCCESS: images/" + user.getImage()+ ".jpg");
-            System.out.println("\n\n\n\n");
-
             try {
                 final File localFile = File.createTempFile("temp", ".jpg");
 
@@ -86,14 +82,14 @@ public class MyCustomListAdapter extends ArrayAdapter<Information> {
                             @Override
                             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                                 //Toast.makeText(MyCustomListAdapter.this, "Picture Retrieved", Toast.LENGTH_SHORT).show();
-                                System.out.println("AAAAAAAAAAAAAAAAAAAAAASUCCESS: images/" + user.getImage());
+                                System.out.println("Image retrieved for user: " + user.getUsername());
                                 Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                                 imageView.setImageBitmap(bitmap);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAILURE: image/" + user.getImage());
+                        System.out.println("Could not retrieve image for user: " + user.getUsername());
                         imageView.setImageResource(R.drawable.defaultimage);
                         //Toast.makeText(MyCustomListAdapter.this, "Picture NOT Retrieved", Toast.LENGTH_SHORT).show();
                     }
