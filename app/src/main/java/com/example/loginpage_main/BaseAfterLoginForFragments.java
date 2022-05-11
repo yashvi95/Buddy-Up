@@ -43,30 +43,5 @@ public class BaseAfterLoginForFragments extends AppCompatActivity {
                 return true;
             }
         });
-/*
-        listView = findViewById(R.id.listView);
-
-        ArrayList<String> list = new ArrayList<>();
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.list_item, list);
-        listView.setAdapter(adapter);
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Information info = snapshot.getValue(Information.class);
-                    String profileInfo = info.getUsername() + "     GYM: " + info.getGym();
-                    list.add(profileInfo);
-                }
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-*/
     }
 }
