@@ -19,6 +19,9 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -35,7 +38,6 @@ public class MyCustomListAdapter extends ArrayAdapter<Information> {
 
     private FirebaseStorage storage;
     private StorageReference mImageRef;
-
 
     public MyCustomListAdapter(@NonNull Context context, int resource, @NonNull List<Information> userList) {
         super(context, resource, userList);
@@ -63,6 +65,7 @@ public class MyCustomListAdapter extends ArrayAdapter<Information> {
         TextView c1Text = view.findViewById(R.id.c1Text);
         TextView c2Text = view.findViewById(R.id.c2Text);
         TextView c3Text = view.findViewById(R.id.c3Text);
+        TextView schText = view.findViewById(R.id.scheduleText);
 
         Information user = userList.get(position);
 
@@ -70,10 +73,6 @@ public class MyCustomListAdapter extends ArrayAdapter<Information> {
 
         if(user.getImage() != null) {
             mImageRef = storage.getReference("images/" + user.getImage());
-
-            System.out.println("\n\n\n\n");
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAASUCCESS: images/" + user.getImage()+ ".jpg");
-            System.out.println("\n\n\n\n");
 
             try {
                 final File localFile = File.createTempFile("temp", ".jpg");
@@ -83,14 +82,14 @@ public class MyCustomListAdapter extends ArrayAdapter<Information> {
                             @Override
                             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                                 //Toast.makeText(MyCustomListAdapter.this, "Picture Retrieved", Toast.LENGTH_SHORT).show();
-                                System.out.println("AAAAAAAAAAAAAAAAAAAAAASUCCESS: images/" + user.getImage());
+                                System.out.println("Image retrieved for user: " + user.getUsername());
                                 Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                                 imageView.setImageBitmap(bitmap);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAILURE: image/" + user.getImage());
+                        System.out.println("Could not retrieve image for user: " + user.getUsername());
                         imageView.setImageResource(R.drawable.defaultimage);
                         //Toast.makeText(MyCustomListAdapter.this, "Picture NOT Retrieved", Toast.LENGTH_SHORT).show();
                     }
@@ -105,78 +104,20 @@ public class MyCustomListAdapter extends ArrayAdapter<Information> {
         }
 
 
-/*
-        final long ONE_MEGABYTE = 1024 * 1024;
-        mImageRef.getBytes(ONE_MEGABYTE)
-        .addOnSuccessListener(new onSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                DisplayMetrics dm = new DisplayMetrics();
-                getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-                imageView.setMinimumHeight(dm.heightPixels);
-                imageView.setMinimumWidth(dm.widthPixels);
-                imageView.setImageBitmap(bm);
-                imageView.setImageResource(bm);
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
-        });
-*/
         textViewName.setText(user.getFirstname());
         textViewGym.setText("GYM: " + user.getGym());
-/*
-        String ExerciseInfo = "Preferred Exercises:\n";
-        if(user.getC1() != null)
-        {
-            ExerciseInfo = ExerciseInfo + user.getC1() + "\n";
-        }
-        if(user.getC2() != null)
-        {
-            ExerciseInfo = ExerciseInfo + user.getC2() + "\n";
-        }
-        if(user.getC3() != null)
-        {
-            ExerciseInfo = ExerciseInfo + user.getC3() + "\n";
-        }
+        c1Text.setText(user.getC1());
+        c2Text.setText(user.getC2());
+        c3Text.setText(user.getC3());
 
-        if(user.getC1() == null && user.getC2() == null && user.getC3() == null)
+        if(user.getSchedule() == null)
         {
-            ExerciseInfo = ExerciseInfo + "None\n";
-        }
-
-        textViewExercises.setText(ExerciseInfo);
-*/
-/*
-        if(user.getImage() == "")
-        {
-            //set to user.getImage() once it is set up.
-            imageView.setImageResource(R.drawable.defaultimage);
+            schText.setText("");
         }
         else
         {
-            imageView.setImageURI(user.getImage());
+            schText.setText(user.getSchedule());
         }
-*/
-
-        /*
-        Glide.with(this)
-                .load(user.getImage())
-                .into(imageView)
-                .error(R.drawable.defaultimage);
-        */
-
-//        c1View.setImageResource(R.drawable.cardio);
-        c1Text.setText(user.getC1());
-//        c2View.setImageResource(R.drawable.yoga);
-        c2Text.setText(user.getC2());
-//        c3View.setImageResource(R.drawable.dumbell);
-        c3Text.setText(user.getC3());
 
         switch (user.getC1().toLowerCase())
         {
