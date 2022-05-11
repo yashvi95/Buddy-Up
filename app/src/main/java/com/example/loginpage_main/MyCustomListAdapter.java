@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,8 @@ public class MyCustomListAdapter extends ArrayAdapter<Information> {
     private FirebaseStorage storage;
     private StorageReference mImageRef;
 
+    Information user;
+
     public MyCustomListAdapter(@NonNull Context context, int resource, @NonNull List<Information> userList) {
         super(context, resource, userList);
 
@@ -67,7 +70,7 @@ public class MyCustomListAdapter extends ArrayAdapter<Information> {
         TextView c3Text = view.findViewById(R.id.c3Text);
         TextView schText = view.findViewById(R.id.scheduleText);
 
-        Information user = userList.get(position);
+        user = userList.get(position);
 
         storage = FirebaseStorage.getInstance();
 
@@ -239,7 +242,18 @@ public class MyCustomListAdapter extends ArrayAdapter<Information> {
             }
         }
 
+        Button messageButton = (Button) view.findViewById(R.id.messageButton);
+        messageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //do what you want to do when button is clicked
+                System.out.println("BUTTON CLICKED");
+                Information user_with_button = userList.get(position);
+                System.out.println("YOU CLICKED ON: " + user_with_button.getEmail() + " " + position);
+            }
+        });
 
         return view;
     }
+
 }

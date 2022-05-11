@@ -60,7 +60,7 @@
 -->
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/messageButton"
         android:layout_width="96dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/homePicture"
