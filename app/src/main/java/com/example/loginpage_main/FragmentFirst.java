@@ -81,12 +81,12 @@ public class FragmentFirst extends Fragment {
 
     private void RetrieveAndDisplayUsers() {
 
-        UserRef.addValueEventListener(new ValueEventListener() {
+        UserRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     UserRef_ForThisOne = FirebaseDatabase.getInstance().getReference("Users").child(user_a.getUid());
 
-                    UserRef_ForThisOne.addValueEventListener(new ValueEventListener() {
+                    UserRef_ForThisOne.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot02) {
                             for(DataSnapshot snapshot : dataSnapshot.getChildren())

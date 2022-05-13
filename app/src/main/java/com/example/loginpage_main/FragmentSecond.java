@@ -86,23 +86,6 @@ public class FragmentSecond extends Fragment {
                                     for(DataSnapshot Contactsnapshot : snapshot.getChildren()) {
                                         CurrentUser = snapshot02.getValue(Information.class);
                                         Information CurrentContact = Contactsnapshot.getValue(Information.class);
-/*
-                                        if(CurrentUser.getEmail() != null)
-                                        {
-                                            //If the logged-in user has the same schedule as a person that has an account
-                                            //(we loop through every account), add it to the ArrayAdapter.
-                                            if(CurrentContact.getEmail() != null)
-                                            {
-
-                                            }
-                                        }
-                                        //if the CurrentUser doesn't have a preferred schedule time, just add everyone.
-                                        else
-                                        {
-                                            list_of_users.add(CurrentContact);
-                                            adapter2.notifyDataSetChanged();
-                                        }
-*/
                                         list_of_users.add(CurrentContact);
                                         adapter2.notifyDataSetChanged();
                                     }
