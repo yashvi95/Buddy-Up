@@ -58,10 +58,10 @@ public class SignUpTests {
         assertTrue(myTestObject.firstNameIsValid());
     }
 
-    // Firstname is 123456789012345678901234, 24 chars, exactly upper limit
+    // Firstname is aaaaaaaaaaaaaaaaaaaaaaaa, 24 chars, exactly upper limit
     @Test
     public void firstNameIsValid2() {
-        User myTestObject = new User("123456789012345678901234","Smith","Asmith1","password","7077077707","buddyup@yahoo.com","WREC","Cardio","Yoga","Body Building","Morning","imagestring");
+        User myTestObject = new User("aaaaaaaaaaaaaaaaaaaaaaaa","Smith","Asmith1","password","7077077707","buddyup@yahoo.com","WREC","Cardio","Yoga","Body Building","Morning","imagestring");
         assertTrue(myTestObject.firstNameIsValid());
     }
 
@@ -79,10 +79,10 @@ public class SignUpTests {
         assertFalse(myTestObject.firstNameIsValid());
     }
 
-    // Firstname is 1234567890123456789012345, exactly 25 chars, 1 past upper limit
+    // Firstname is aaaaaaaaaaaaaaaaaaaaaaaaa, exactly 25 chars, 1 past upper limit
     @Test
     public void firstNameIsInvalid2() {
-        User myTestObject = new User("1234567890123456789012345","Smith","Asmith1","password","7077077707","buddyup@yahoo.com","WREC","Cardio","Yoga","Body Building","Morning","imagestring");
+        User myTestObject = new User("aaaaaaaaaaaaaaaaaaaaaaaaa","Smith","Asmith1","password","7077077707","buddyup@yahoo.com","WREC","Cardio","Yoga","Body Building","Morning","imagestring");
         assertFalse(myTestObject.firstNameIsValid());
     }
 
@@ -90,6 +90,13 @@ public class SignUpTests {
     @Test
     public void firstNameIsInvalid3() {
         User myTestObject = new User("","Smith","Asmith1","password","7077077707","buddyup@yahoo.com","WREC","Cardio","Yoga","Body Building","Morning","imagestring");
+        assertFalse(myTestObject.firstNameIsValid());
+    }
+
+    // Firstname is Albert1, string may only contain alphabet chars
+    @Test
+    public void firstNameIsInvalid4() {
+        User myTestObject = new User("Albert1","Smith","Asmith1","password","7077077707","buddyup@yahoo.com","WREC","Cardio","Yoga","Body Building","Morning","imagestring");
         assertFalse(myTestObject.firstNameIsValid());
     }
 
@@ -107,10 +114,10 @@ public class SignUpTests {
         assertTrue(myTestObject.lastNameIsValid());
     }
 
-    // Lastname is 123456789012345678901234, exactly 24 chars, upper limit
+    // Lastname is aaaaaaaaaaaaaaaaaaaaaaaa, exactly 24 chars, upper limit
     @Test
     public void lastNameIsValid3() {
-        User myTestObject = new User("Albert","123456789012345678901234","Asmith1","password","7077077707","buddyup@yahoo.com","WREC","Cardio","Yoga","Body Building","Morning","imagestring");
+        User myTestObject = new User("Albert","aaaaaaaaaaaaaaaaaaaaaaaa","Asmith1","password","7077077707","buddyup@yahoo.com","WREC","Cardio","Yoga","Body Building","Morning","imagestring");
         assertTrue(myTestObject.lastNameIsValid());
     }
 
@@ -125,6 +132,13 @@ public class SignUpTests {
     @Test
     public void lastNameIsInvalid2() {
         User myTestObject = new User("Albert","1234567890123456789012345","Asmith1","password","7077077707","buddyup@yahoo.com","WREC","Cardio","Yoga","Body Building","Morning","imagestring");
+        assertFalse(myTestObject.lastNameIsValid());
+    }
+
+    // Lastname is Bobby12, only lowercase and uppercase letters allowed
+    @Test
+    public void lastNameIsInvalid3() {
+        User myTestObject = new User("Albert","Bobby12","Asmith1","password","7077077707","buddyup@yahoo.com","WREC","Cardio","Yoga","Body Building","Morning","imagestring");
         assertFalse(myTestObject.lastNameIsValid());
     }
 
