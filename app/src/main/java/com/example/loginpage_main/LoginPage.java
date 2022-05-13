@@ -19,32 +19,50 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginPage extends AppCompatActivity implements View.OnClickListener {
 
-    private FirebaseAuth mAuth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Set up the login page layout
         setContentView(R.layout.activity_login_page);
 
+        // Set up the text views for username and password
         TextView username = (TextView) findViewById(R.id.username_text);
         TextView password = (TextView) findViewById(R.id.password_text);
 
+        // Set up the buttons for login and signup
         Button loginbtn = (Button) findViewById(R.id.LogIn_Button);
         Button signupbtn = (Button) findViewById(R.id.SignUp_Button);
         signupbtn.setOnClickListener(this);
 
-        /*
-        TextView forgotpasstxt = (TextView) findViewById(R.id.forgot_pass_text);
-        */
-
-        mAuth = FirebaseAuth.getInstance();
-
-
         loginbtn.setOnClickListener(new View.OnClickListener() {
+
+            // Execute this code when someone clicks the login button
             @Override
             public void onClick(View v) {
-                //when we click this button, we check the user and password
-                String uName = username.getText().toString().trim();
+
+                User user = new User(username.getText().toString().trim(),password.getText().toString().trim());
+
+                //when we click the login button, we check the user and password
+                if (!user.emailIsValid())
+                {
+                    Toast.makeText(LoginPage.this, "Invalid email", Toast.LENGTH_SHORT).show();
+                    return;
+
+                } else if (!user.passwordIsValid())
+                {
+                    Toast.makeText(LoginPage.this, "Invalid password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                //Enter here if username and password are of valid format, attempt to login to firebase
+                attemptFireBaseLogIn(username.getText().toString().trim(),password.getText().toString().trim());
+
+            }
+        });
+    }
+
+                /*String uName = username.getText().toString().trim();
                 String pWord = password.getText().toString().trim();
 
                 if(!uName.isEmpty() && !pWord.isEmpty())
@@ -61,20 +79,14 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
                 String uName = username.getText().toString().trim();
                 String pWord = password.getText().toString().trim();
 
-                if(!Patterns.EMAIL_ADDRESS.matcher(uName).matches())
+                if(!userValidator(uName))
                 {
                     username.setError("Please enter a valid email.");
                     username.requestFocus();
                     return;
                 }
-                if(pWord.isEmpty())
-                {
-                    password.setError("Password is required.");
-                    password.requestFocus();
-                    return;
-                }
 
-                if(password.length() < 6)
+                if(!passwordValidator(pWord))
                 {
                     password.setError("Minimum password length is 6 characters");
                     password.requestFocus();
@@ -99,6 +111,8 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
             }
 
         });
+
+                 */
 /*
         signupbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,8 +129,12 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
             }
         });
         */
-    }
 
+    //public LoginPage(String str) {
+    //    String NiceJob = str;
+    //}
+
+    // This is for the signup button, switch fragments for signup
     @Override
     public void onClick(View view) {
         switch(view.getId()){
@@ -125,4 +143,54 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
                 break;
         }
     }
-}
+/*
+    // This functions checks to see if the username, aka email, is of valid format
+    public boolean userValidator(String usrName)
+    {
+        if (usrName.isEmpty()) {
+            return false;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(usrName).matches()) {
+            return false;
+        }
+        return true;
+    }
+
+    // This function checks to see if the password is of valid format
+    public boolean passwordValidator(String passWrd)
+    {
+        if (passWrd.length() < 6) {
+            return false;
+        }
+        return true;
+    }
+*/
+    // This function attempts to login to firebase, given valid formatting of an email and password
+    public boolean attemptFireBaseLogIn(String uName, String pWord)
+    {
+        final boolean[] result = new boolean[1];
+
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+       // mAuth = FirebaseAuth.getInstance();
+
+        mAuth.signInWithEmailAndPassword(uName,pWord).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful())
+                {
+                    result[0] = true;
+                    startActivity(new Intent(LoginPage.this, BaseAfterLoginForFragments.class));
+
+                } else {
+                    result[0] = false;
+                    Toast.makeText(LoginPage.this, "Failed to Log In! Wrong Username or Password", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        return result[0];
+    }
+
+} // End Login Page Class definition

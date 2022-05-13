@@ -13,60 +13,72 @@
         android:layout_height="match_parent"
         tools:context=".SignUp">
 
-        <EditText
+        <TextView
+            android:id="@+id/outdoor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_baseline_wb_sunny_24"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="OUTDOOR ACTIVITY"
+            android:textSize="10pt"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardio"
+            app:layout_constraintVertical_bias="0.0"
+
+            />
+
+        <Spinner
             android:id="@+id/category1"
             android:layout_width="382dp"
             android:layout_height="65dp"
             android:layout_centerHorizontal="true"
-            android:background="#70ffffff"
-            android:drawableLeft="@drawable/ic_baseline_star_24"
             android:drawablePadding="5dp"
-            android:hint="Type in Category"
-            android:padding="10dp"
+            android:padding="5dp"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/category2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.482"
+            app:layout_constraintHorizontal_bias="0.586"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardio"
+            app:layout_constraintTop_toBottomOf="@+id/outdoor"
             app:layout_constraintVertical_bias="0.0" />
 
-        <EditText
+        <Spinner
             android:id="@+id/category2"
             android:layout_width="382dp"
             android:layout_height="65dp"
             android:layout_centerHorizontal="true"
-            android:background="#70ffffff"
-            android:drawableLeft="@drawable/ic_baseline_star_24"
-            android:drawablePadding="5dp"
-            android:hint="Type in Category"
+            android:layout_marginTop="8dp"
+            android:drawablePadding="4dp"
             android:padding="10dp"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.482"
+            app:layout_constraintHorizontal_bias="0.586"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/category1" />
 
-        <EditText
+        <Spinner
             android:id="@+id/category3"
             android:layout_width="382dp"
             android:layout_height="65dp"
             android:layout_centerHorizontal="true"
-            android:background="#70ffffff"
-            android:drawableLeft="@drawable/ic_baseline_star_24"
             android:drawablePadding="5dp"
-            android:hint="Type in Category"
             android:padding="10dp"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.482"
+            app:layout_constraintHorizontal_bias="0.551"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/category2"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.004" />
+
 
         <TextView
             android:id="@+id/strengthtraining"
@@ -219,17 +231,98 @@
             android:layout_width="112dp"
             android:layout_height="69dp"
             android:layout_centerHorizontal="true"
-            android:layout_margin="10dp"
+            android:layout_margin="40dp"
+            android:layout_marginTop="40dp"
             android:backgroundTint='@color/design_default_color_background'
             android:drawablePadding="10dp"
             android:padding="20dp"
             android:text="Change"
             android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/select" />
+
+        <TextView
+            android:id="@+id/schedule"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:drawablePadding="9dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="SCHEDULE A TIME"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/category3" />
+            app:layout_constraintTop_toBottomOf="@+id/category3"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Spinner
+            android:id="@+id/scheduling"
+            android:layout_width="382dp"
+            android:layout_height="65dp"
+            android:layout_centerHorizontal="true"
+            android:drawablePadding="5dp"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textStyle="bold"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.758"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/schedule" />
+
+        <TextView
+            android:id="@+id/upload"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawablePadding="9dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="UPLOAD A PICTURE"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/scheduling"
+            tools:layout_editor_absoluteX="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+             />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ProfilePic"
+            android:layout_width="142dp"
+            android:layout_height="153dp"
+            android:padding="5dp"
+            android:src="@drawable/profile"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toTopOf="@id/select"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/upload" />
+
+        <Button
+            android:id="@+id/select"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:drawablePadding="9dp"
+            android:text="Upload Image"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ProfilePic"
+            app:layout_constraintVertical_bias="0.476" />
 
         <EditText
             android:id="@+id/gym"

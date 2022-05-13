@@ -3,13 +3,16 @@ package com.example.loginpage_main;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +39,11 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
     FirebaseUser user;
     private ImageView profilePic;
     private TextView commitBtn;
-    private EditText editTextfirstname, editTextlastname, editTextusername, editTextphonenumber, editTextemail, editTextgym,category1, category2, category3;
+    private EditText editTextfirstname, editTextlastname, editTextusername, editTextphonenumber, editTextemail, editTextgym;
+    Spinner category1, category2, category3, schedule;
+    String cat1, cat2, cat3, schdl;
+    String[] Categories = {"Choose a Category", "Body Building","Strength Training","Weight Loss","Yoga","Cardio","Outdoor Activities"};
+    String[] Scheduling = {"Choose a time that works best for you!","Morning","Afternoon","Evening","Flexible"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +62,30 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         editTextemail = (EditText) findViewById(R.id.email);
         editTextphonenumber = (EditText) findViewById(R.id.phonenumber);
         editTextgym = (EditText) findViewById(R.id.gym);
-        category1 = (EditText) findViewById(R.id.category1);
-        category2 = (EditText) findViewById(R.id.category2);
-        category3 = (EditText) findViewById(R.id.category3);
+
 
         commitBtn = (Button) findViewById(R.id.commitChange);
         commitBtn.setOnClickListener(this);
+
+        category1 = (Spinner) findViewById(R.id.category1);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,Categories);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        category1.setAdapter(arrayAdapter);
+
+        category2 = (Spinner) findViewById(R.id.category2);
+        ArrayAdapter arrayAdapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,Categories);
+        arrayAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        category2.setAdapter(arrayAdapter2);
+
+        category3 = (Spinner) findViewById(R.id.category3);
+        ArrayAdapter arrayAdapter3 = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,Categories);
+        arrayAdapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        category3.setAdapter(arrayAdapter3);
+
+        schedule = (Spinner) findViewById(R.id.scheduling);
+        ArrayAdapter arrayAdapter4 = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,Scheduling);
+        arrayAdapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        schedule.setAdapter(arrayAdapter4);
 
         UserRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -80,11 +105,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
 
                 editTextgym.setText(users.getGym());
 
-                category1.setText(users.getC1());
 
-                category2.setText(users.getC2());
-
-                category3.setText(users.getC3());
             }
 
             @Override
@@ -107,7 +128,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
 
     boolean commit = false;
 
-    private void commitBtn() {
+    public void commitBtn() {
 
         String firstname = editTextfirstname.getText().toString().trim();
         String lastname = editTextlastname.getText().toString().trim();
@@ -115,9 +136,15 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         String email = editTextemail.getText().toString().trim();
         String phonenumber = editTextphonenumber.getText().toString().trim();
         String gym = editTextgym.getText().toString().trim();
-        String c1 = category1.getText().toString().trim();
-        String c2 = category2.getText().toString().trim();
-        String c3 = category3.getText().toString().trim();
+
+        cat1 = category1.getSelectedItem().toString();
+        cat2 = category2.getSelectedItem().toString();
+        cat3 = category3.getSelectedItem().toString();
+        schdl = schedule.getSelectedItem().toString();
+
+        TextView errorText = (TextView)category1.getSelectedView();
+        TextView errorText2 = (TextView)schedule.getSelectedView();
+
 
 
 
@@ -163,24 +190,21 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
             commit = true;
             return;
         }
-        if (c1.isEmpty()) {
-            category1.setError("Required");
-            category1.requestFocus();
+        if(cat1 == "Choose a Category"){
+            errorText.setError("");
+            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+            errorText.setText("Choose one!");//changes the selected item
             commit = true;
             return;
         }
-        if (c2.isEmpty()) {
-            category2.setError("Required");
-            category2.requestFocus();
+        if(schdl == "Choose a time that works best for you!"){
+            errorText2.setError("");
+            errorText2.setTextColor(Color.RED);//just to highlight that this is an error
+            errorText2.setText("Choose one!");//changes the selected item
             commit = true;
             return;
         }
-        if (c3.isEmpty()) {
-            category3.setError("Required");
-            category3.requestFocus();
-            commit = true;
-            return;
-        }
+
 
         if (!commit) {
             UserRef.child("firstname").setValue(firstname);
@@ -188,9 +212,10 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
             UserRef.child("username").setValue(username);
             UserRef.child("phonenumber").setValue(phonenumber);
             UserRef.child("gym").setValue(gym);
-            UserRef.child("c1").setValue(c1);
-            UserRef.child("c2").setValue(c2);
-            UserRef.child("c3").setValue(c3);
+            UserRef.child("c1").setValue(cat1);
+            UserRef.child("c2").setValue(cat2);
+            UserRef.child("c3").setValue(cat3);
+            UserRef.child("schedule").setValue(schdl);
         }
 
         startActivity(new Intent(this, BaseAfterLoginForFragments.class));

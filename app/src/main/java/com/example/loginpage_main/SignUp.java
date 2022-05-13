@@ -202,64 +202,53 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         TextView errorText = (TextView)category1.getSelectedView();
         TextView errorText2 = (TextView)schedule.getSelectedView();
 
+        User curUser = new User(firstname,lastname,username,password,phonenumber,email,gym,cat1,cat2,cat3,schdl,image);
 
-
-        if (firstname.isEmpty()) {
-            editTextfirstname.setError("Required");
+        if (!curUser.firstNameIsValid()) {
+            editTextfirstname.setError("Please Enter a Valid First Name");
             editTextfirstname.requestFocus();
             return;
         }
-        if (lastname.isEmpty()) {
-            editTextlastname.setError("Required");
+        if (!curUser.lastNameIsValid()) {
+            editTextlastname.setError("Please Enter a Valid Last Name");
             editTextlastname.requestFocus();
             return;
         }
-        if (username.isEmpty()) {
-            editTextusername.setError("Required");
+        if (!curUser.userNameIsValid()) {
+            editTextusername.setError("Please Enter a Valid Username");
             editTextusername.requestFocus();
             return;
         }
-        if (password.isEmpty()) {
-            editTextpassword.setError("Required");
+        if (!curUser.passwordIsValid()) {
+            editTextpassword.setError("Please Enter a Password between 6 and 24 characters long");
             editTextpassword.requestFocus();
             return;
         }
-
-        if (password.length() < 6) {
-            editTextpassword.setError("Min password length should be 6 characters");
-            editTextpassword.requestFocus();
-            return;
-        }
-        if (email.isEmpty()) {
-            editTextemail.setError("Required");
+        if (!curUser.emailIsValid()) {
+            editTextemail.setError("Please Enter a Valid Email");
             editTextemail.requestFocus();
             return;
         }
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            editTextemail.setError("Please provide valid email");
-            editTextemail.requestFocus();
-            return;
-        }
-        if (phonenumber.isEmpty()) {
-            editTextphonenumber.setError("Required");
+        if (!curUser.phoneNumberIsValid()) {
+            editTextphonenumber.setError("Please Enter a Valid Phone Number");
             editTextphonenumber.requestFocus();
             return;
         }
-        if (gym.isEmpty()) {
-            editTextgym.setError("Required");
+        if (!curUser.gymIsValid()) {
+            editTextgym.setError("Please Enter a Valid Gym");
             editTextgym.requestFocus();
             return;
         }
-        if(cat1 == "Choose a Category"){
+        if(!curUser.c1IsValid()){
             errorText.setError("");
             errorText.setTextColor(Color.RED);//just to highlight that this is an error
-            errorText.setText("Choose one!");//changes the selected item
+            errorText.setText("Choose at least one category!");//changes the selected item
             return;
         }
-        if(schdl == "Choose a time that works best for you!"){
+        if(!curUser.scheduleIsValid()){
             errorText2.setError("");
             errorText2.setTextColor(Color.RED);//just to highlight that this is an error
-            errorText2.setText("Choose one!");//changes the selected item
+            errorText2.setText("Please select when you'd like to workout!");//changes the selected item
             return;
         }
         
