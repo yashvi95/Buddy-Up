@@ -1,5 +1,11 @@
 package com.example.loginpage_main;
 
+import android.util.Patterns;
+
+import androidx.core.util.PatternsCompat;
+
+import java.util.regex.Pattern;
+
 public class User {
     public String firstname, lastname, username, password, phonenumber, email, gym,c1,c2,c3,schedule,image;
 
@@ -17,7 +23,102 @@ public class User {
         this.schedule = schedule;
         this.image = image;
 
+    }
 
+    public User(String uName, String pWord) {
+        this.email = uName;
+        this.password = pWord;
+    }
+
+    // This functions checks to see if the username, aka email, is of valid format
+    public boolean emailIsValid()
+    {
+        if (email.isEmpty()) {
+            return false;
+        }
+
+        return PatternsCompat.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    // This function checks to see if the password is of valid format
+    public boolean passwordIsValid()
+    {
+        if (password.length() < 6 || password.length() > 24) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean userNameIsValid()
+    {
+        if (username.length() < 3 || username.length() > 24) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean firstNameIsValid()
+    {
+        if (firstname.length() < 2 || firstname.length() > 24) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean lastNameIsValid()
+    {
+        if (lastname.isEmpty() || lastname.length() > 24) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean phoneNumberIsValid()
+    {
+        // Implement if the strings contains anything but numbers return false
+        for (int i = 0; i < phonenumber.length(); ++i) {
+
+            if (phonenumber.charAt(i) < 48 || phonenumber.charAt(i) > 57) {
+                return false;
+            }
+        }
+
+        if (phonenumber.length() == 10 || phonenumber.length() == 11) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean gymIsValid()
+    {
+        if (gym.length() < 3 || gym.length() > 24) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean c1IsValid()
+    {
+        if (c1 == "Choose a Category" || c1 != "Body Building" && c1 != "Strength Training" && c1 != "Weight Loss" && c1 != "Yoga" && c1 != "Cardio" && c1 != "Outdoor Activities") {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean scheduleIsValid()
+    {
+        if (schedule == "Choose a time that works best for you!" || schedule != "Morning" && schedule != "Afternoon" && schedule != "Evening" && schedule != "Flexible") {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean imageIsValid()
+    {
+        if (image.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
     public String getSchedule() {
