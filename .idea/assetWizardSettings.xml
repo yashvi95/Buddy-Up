@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$PROJECT_DIR$/../../../Yashvi%201/Library/Android/sdk/icons/material/materialicons/wb_sunny/baseline_wb_sunny_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/diversity_3/baseline_diversity_3_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -34,7 +34,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="050505" />
-                            <entry key="outputName" value="ic_baseline_wb_sunny_24" />
+                            <entry key="outputName" value="ic_buddies" />
                             <entry key="sourceFile" value="/C:\Users\ronan\AndroidStudioProjects\LogInPage_main" />
                           </map>
                         </option>

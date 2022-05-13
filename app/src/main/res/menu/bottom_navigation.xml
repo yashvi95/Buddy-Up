@@ -16,9 +16,9 @@
 
     <item
         android:id="@+id/secondFragment_Messages"
-        android:icon="@drawable/ic_baseline_mail_24"
+        android:icon="@drawable/ic_buddies"
         android:color="@color/black"
-        android:title="Messages"
+        android:title="Buddies"
         />
 
 </menu>

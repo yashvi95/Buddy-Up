@@ -39,6 +39,9 @@
         <entry key="app/src/main/res/layout/activity_login_page.xml" value="0.2604166666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/base_after_login_for_fragments.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_third.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/my_list_item.xml" value="0.1" />
       </map>
     </option>
   </component>
