@@ -60,7 +60,6 @@ public class FragmentThird extends Fragment {
         picture = FragmentThirdView.findViewById(R.id.ProfilePic);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
-
         UserRef = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
 
         editBtn = (Button) FragmentThirdView.findViewById(R.id.edit_profile);

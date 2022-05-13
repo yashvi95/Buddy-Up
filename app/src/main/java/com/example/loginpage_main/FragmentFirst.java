@@ -19,6 +19,8 @@ import com.bumptech.glide.Registry;
 import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,6 +40,11 @@ public class FragmentFirst extends Fragment {
     private ArrayList<Information> list_of_users = new ArrayList<>();
 
     private DatabaseReference UserRef;
+    private DatabaseReference UserRef_ForThisOne;
+    private FirebaseUser user_a;
+    Information CurrentUser;
+
+
     private FirebaseStorage storage;
     private StorageReference storageReference;
 
@@ -57,6 +64,8 @@ public class FragmentFirst extends Fragment {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
+        user_a = FirebaseAuth.getInstance().getCurrentUser();
+
         InitializeFields();
 
         RetrieveAndDisplayUsers();
@@ -71,14 +80,49 @@ public class FragmentFirst extends Fragment {
     }
 
     private void RetrieveAndDisplayUsers() {
+
         UserRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Information info = snapshot.getValue(Information.class);
-                    list_of_users.add(info);
-                }
-                adapter1.notifyDataSetChanged();
+                    UserRef_ForThisOne = FirebaseDatabase.getInstance().getReference("Users").child(user_a.getUid());
+
+                    UserRef_ForThisOne.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot02) {
+                            for(DataSnapshot snapshot : dataSnapshot.getChildren())
+                            {
+                                CurrentUser = snapshot02.getValue(Information.class);
+                                Information info = snapshot.getValue(Information.class);
+
+                                if(CurrentUser.getSchedule() != null)
+                                {
+                                    //If the logged-in user has the same schedule as a person that has an account
+                                    //(we loop through every account), add it to the ArrayAdapter.
+                                    if(info.getSchedule() != null)
+                                    {
+                                        String one = CurrentUser.getSchedule();
+                                        String two = info.getSchedule();
+                                        if(one.equals(two))
+                                        {
+                                            list_of_users.add(info);
+                                            adapter1.notifyDataSetChanged();
+                                        }
+                                    }
+                                }
+                                //if the CurrentUser doesn't have a preferred schedule time, just add everyone.
+                                else
+                                {
+                                    list_of_users.add(info);
+                                    adapter1.notifyDataSetChanged();
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
             }
 
             @Override
