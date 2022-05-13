@@ -59,6 +59,15 @@ public class User {
 
     public boolean firstNameIsValid()
     {
+        // Add functionality to not allow weird ascii characters
+        for (int i = 0; i < firstname.length(); ++i) {
+            if (firstname.charAt(i) > 64 && firstname.charAt(i) < 91 || firstname.charAt(i) > 96 && firstname.charAt(i) < 123) {
+
+            } else {
+                return false;
+            }
+        }
+
         if (firstname.length() < 2 || firstname.length() > 24) {
             return false;
         }
@@ -67,6 +76,15 @@ public class User {
 
     public boolean lastNameIsValid()
     {
+        // Add functionality to not allow weird ascii characters
+        for (int i = 0; i < lastname.length(); ++i) {
+            if (lastname.charAt(i) > 64 && lastname.charAt(i) < 91 || lastname.charAt(i) > 96 && lastname.charAt(i) < 123) {
+
+            } else {
+                return false;
+            }
+        }
+
         if (lastname.isEmpty() || lastname.length() > 24) {
             return false;
         }
