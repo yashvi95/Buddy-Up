@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/homePicture"
+        android:layout_width="92dp"
+        android:layout_height="92dp"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="2dp"
+
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/homeName"
+        android:layout_width="299dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="7dp"
+        android:layout_toEndOf="@+id/homePicture"
+        android:gravity="center"
+        android:shadowColor="#000"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="1"
+        android:text="TextView"
+        android:textSize="20dp"
+        tools:layout_editor_absoluteX="194dp"
+        tools:layout_editor_absoluteY="28dp" />
+
+    <TextView
+        android:id="@+id/homeGym"
+        android:layout_width="291dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/homeName"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="10dp"
+        android:layout_toEndOf="@+id/homePicture"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="15dp"
+        tools:layout_editor_absoluteX="194dp"
+        tools:layout_editor_absoluteY="70dp" />
+
+    <TextView
+        android:id="@+id/homePhone"
+        android:layout_width="291dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/homeGym"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="10dp"
+        android:layout_toEndOf="@+id/homePicture"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="15dp"
+        tools:layout_editor_absoluteX="194dp"
+        tools:layout_editor_absoluteY="70dp" />
+
+
+</RelativeLayout>

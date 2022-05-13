@@ -18,8 +18,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -29,6 +32,8 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MyCustomListAdapter extends ArrayAdapter<Information> {
@@ -41,6 +46,9 @@ public class MyCustomListAdapter extends ArrayAdapter<Information> {
     private StorageReference mImageRef;
 
     Information user;
+
+    List<ContactInformation> AllContacts;
+    HashMap map = new HashMap();
 
     public MyCustomListAdapter(@NonNull Context context, int resource, @NonNull List<Information> userList) {
         super(context, resource, userList);
@@ -249,7 +257,24 @@ public class MyCustomListAdapter extends ArrayAdapter<Information> {
                 //do what you want to do when button is clicked
                 System.out.println("BUTTON CLICKED");
                 Information user_with_button = userList.get(position);
-                System.out.println("YOU CLICKED ON: " + user_with_button.getEmail() + " " + position);
+                String firstname = user_with_button.getFirstname();
+                String email = user_with_button.getEmail();
+                String phonenumber = user_with_button.getPhonenumber();
+                String schdl = user_with_button.getSchedule();
+                String image = user_with_button.getImage();
+                String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                ContactInformation contact = new ContactInformation(firstname, phonenumber, email, schdl, image);
+
+                map.put(contact.getFirstname(), contact);
+
+                FirebaseDatabase.getInstance().getReference().child("Users").child(currentuser).child("Contacts")
+                        .updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        System.out.println("YOU CLICKED ON: " + firstname + " " + email + " " + phonenumber + " " + schdl + " " + image + " " + position);
+                    }
+                });
+                System.out.println("YOU CLICKED ON: " + firstname + " " + email + " " + phonenumber + " " + schdl + " " + image + " " + position);
             }
         });
 
