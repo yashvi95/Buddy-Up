@@ -277,7 +277,35 @@ public class MyCustomListAdapter extends ArrayAdapter<Information> {
                 System.out.println("YOU CLICKED ON: " + firstname + " " + email + " " + phonenumber + " " + schdl + " " + image + " " + position);
             }
         });
+/*
+        Button messageRemove = (Button) view.findViewById(R.id.messageRemove);
+        messageRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //do what you want to do when button is clicked
+                System.out.println("BUTTON CLICKED");
+                Information user_with_button = userList.get(position);
+                String firstname = user_with_button.getFirstname();
+                String email = user_with_button.getEmail();
+                String phonenumber = user_with_button.getPhonenumber();
+                String schdl = user_with_button.getSchedule();
+                String image = user_with_button.getImage();
+                String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                ContactInformation contact = new ContactInformation(firstname, phonenumber, email, schdl, image);
 
+                map.put(contact.getFirstname(), contact);
+
+                FirebaseDatabase.getInstance().getReference().child("Users").child(currentuser).child("Contacts")
+                        .updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        System.out.println("YOU CLICKED ON: " + firstname + " " + email + " " + phonenumber + " " + schdl + " " + image + " " + position);
+                    }
+                });
+                System.out.println("YOU CLICKED ON: " + firstname + " " + email + " " + phonenumber + " " + schdl + " " + image + " " + position);
+            }
+        });
+*/
         return view;
     }
 

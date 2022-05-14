@@ -77,10 +77,10 @@ public class FragmentSecond extends Fragment {
                 UserRef_ForThisOne = FirebaseDatabase.getInstance().getReference("Users").child(user_a.getUid());
                 UserRef_Contacts = FirebaseDatabase.getInstance().getReference("Users").child(user_a.getUid()).child("Contacts");
 
-                UserRef_ForThisOne.addValueEventListener(new ValueEventListener() {
+                UserRef_ForThisOne.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot02) {
-                            UserRef_Contacts.addValueEventListener(new ValueEventListener() {
+                            UserRef_Contacts.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     for(DataSnapshot Contactsnapshot : snapshot.getChildren()) {
