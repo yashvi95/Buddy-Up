@@ -81,14 +81,15 @@ public class FragmentFirst extends Fragment {
 
     private void RetrieveAndDisplayUsers() {
 
-        UserRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        UserRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     UserRef_ForThisOne = FirebaseDatabase.getInstance().getReference("Users").child(user_a.getUid());
 
-                    UserRef_ForThisOne.addListenerForSingleValueEvent(new ValueEventListener() {
+                    UserRef_ForThisOne.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot02) {
+                            list_of_users.clear();
                             for(DataSnapshot snapshot : dataSnapshot.getChildren())
                             {
                                 CurrentUser = snapshot02.getValue(Information.class);
@@ -105,7 +106,6 @@ public class FragmentFirst extends Fragment {
                                         if(one.equals(two))
                                         {
                                             list_of_users.add(info);
-                                            adapter1.notifyDataSetChanged();
                                         }
                                     }
                                 }
@@ -113,9 +113,9 @@ public class FragmentFirst extends Fragment {
                                 else
                                 {
                                     list_of_users.add(info);
-                                    adapter1.notifyDataSetChanged();
                                 }
                             }
+                            adapter1.notifyDataSetChanged();
                         }
 
                         @Override
