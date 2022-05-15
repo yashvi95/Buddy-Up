@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -76,19 +77,127 @@ public class FragmentSecond extends Fragment {
 
                 UserRef_ForThisOne = FirebaseDatabase.getInstance().getReference("Users").child(user_a.getUid());
                 UserRef_Contacts = FirebaseDatabase.getInstance().getReference("Users").child(user_a.getUid()).child("Contacts");
+/*
+                UserRef_ForThisOne.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        CurrentUser = snapshot.getValue(Information.class);
+                    }
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+*/
+        UserRef_Contacts.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    list_of_users.clear();
+                    for(DataSnapshot dataSnapshot : snapshot.getChildren())
+                    {
+                        Information CurrentContact = dataSnapshot.getValue(Information.class);
+                        if(CurrentContact != null)
+                        {
+                            list_of_users.add(CurrentContact);
+                        }
+                    }
+                    adapter2.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+/*
+                UserRef_Contacts.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(@NonNull DataSnapshot Contactsnapshot, @Nullable String previousChildName) {
+                        Information CurrentContact = Contactsnapshot.getValue(Information.class);
+                        if(!list_of_users.contains(CurrentContact))
+                        {
+                            list_of_users.add(CurrentContact);
+                            adapter2.notifyDataSetChanged();
+                        }
+                    }
+
+                    @Override
+                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                        Information CurrentContact = snapshot.getValue(Information.class);
+                        list_of_users.remove(CurrentContact);
+                        adapter2.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+ */
+/*
                 UserRef_ForThisOne.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot02) {
-                            UserRef_Contacts.addListenerForSingleValueEvent(new ValueEventListener() {
+                            UserRef_Contacts.addChildEventListener(new ChildEventListener() {
+                                /*
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     for(DataSnapshot Contactsnapshot : snapshot.getChildren()) {
                                         CurrentUser = snapshot02.getValue(Information.class);
                                         Information CurrentContact = Contactsnapshot.getValue(Information.class);
-                                        list_of_users.add(CurrentContact);
-                                        adapter2.notifyDataSetChanged();
+                                        if(!list_of_users.contains(CurrentContact))
+                                        {
+                                            list_of_users.add(CurrentContact);
+                                            adapter2.notifyDataSetChanged();
+                                        }
                                     }
+                                }
+
+                                @Override
+                                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                    System.out.println("ADDED CHILD\n\n\n\n\nAAAA");
+                                    CurrentUser = snapshot02.getValue(Information.class);
+                                    Information CurrentContact = snapshot.getValue(Information.class);
+
+                                    list_of_users.add(CurrentContact);
+                                    adapter2.notifyDataSetChanged();
+                                }
+
+                                @Override
+                                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                    System.out.println("CHANGED CHILD\n\n\n\n\nAAAA");
+
+                                }
+
+                                @Override
+                                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                                    System.out.println("REMOVED CHILD\n\n\n\n\nAAAA");
+
+                                    CurrentUser = snapshot02.getValue(Information.class);
+                                    Information CurrentContact = snapshot.getValue(Information.class);
+
+                                    list_of_users.remove(CurrentContact);
+                                    adapter2.notifyDataSetChanged();
+
+                                }
+
+                                @Override
+                                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                    System.out.println("MOVED CHILD\n\n\n\n\nAAAA");
+
                                 }
 
                                 @Override
@@ -104,5 +213,7 @@ public class FragmentSecond extends Fragment {
 
                     }
                 });
+                */
+
     }
 }

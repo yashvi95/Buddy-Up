@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -117,8 +118,15 @@ public class Messaging extends ArrayAdapter<Information> {
                 String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 ContactInformation contact = new ContactInformation(firstname, phonenumber, email, schdl, image);
 
-                FirebaseDatabase.getInstance().getReference().child("Users").child(currentuser).child("Contacts").child(contact.getFirstname()).removeValue();
-        }});
+                FirebaseDatabase.getInstance().getReference().child("Users").child(currentuser).child("Contacts").child(contact.getFirstname()).removeValue()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(context, "Goodbye Buddy!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+            }});
 
         return view;
     }
